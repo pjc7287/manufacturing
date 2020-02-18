@@ -8,9 +8,13 @@ team_
 
 ## Team
 
-- Jane Doe (role)
+- Kevin Adrian (Config)
 
-- John Doe (role)
+- Peter Carter (QA)
+
+- Jacob Scali (Requirments)
+
+- Mark Vittozzi (Project Coordinator) 
 
 
 ##Prerequisites
