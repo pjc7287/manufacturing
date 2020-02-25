@@ -12,9 +12,7 @@ team_
 
 - Peter Carter (QA)
 
-- Jacob Scali (Requirments)
-
-- Mark Vittozzi (Project Coordinator) 
+- Jacob Scali (Requirments, Project Coordinator)
 
 
 ##Prerequisites
