@@ -15,7 +15,7 @@ team_manufacturing
 - Jacob Scali (Requirments, Project Coordinator)
 
 
-##Prerequisites
+## Prerequisites
 
 - Java 8
 
@@ -24,7 +24,7 @@ team_manufacturing
 - IntelliJ - as developer platform
 
 
-##How to begin
+## How to begin
 
 1. Install prerequisites
 
@@ -36,7 +36,7 @@ team_manufacturing
 
 
 
-##License
+## License
 
 MIT License
 
