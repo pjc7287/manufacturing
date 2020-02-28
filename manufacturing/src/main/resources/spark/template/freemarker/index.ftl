@@ -2,52 +2,41 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta http-equiv="refresh" content="10">
-		<title>KennUWare</title>
+		<title>KennUware</title>
 		<link rel="stylesheet" type="text/css" href="/css/style.css">
 	</head>
 	<body>
-		<header>
-			<h1>KennUWare Manufacturing</h1>
-		</header>
-		<hr>
-		<main>
-		<div>
-		    <h2> Recipes </h2>
-
-		    Add A Recipe<br>
-
-		    View All Recipes<br>
-
-		    Delete A Recipe<br>
-
-
+		<div class="header">
+			<h1>KennUware</h1>
+			<p>Manufacturing Portal</p>
 		</div>
-
-		<div>
-		    <h2> Orders </h2>
-
-		    View All Orders<br>
-
-		    Order History<br>
-
-		    Complete Order<br>
-
-		    Cancel Order<br>
-
-		</div>
-
-		<div>
-		    <h2> Warehouse </h2>
-
-		    View Assembly Line<br>
-
-		    View Warehouse Costs<br>
-
-		    View Inventory<br>
-
-		</div>
-
-		</main>
+			<hr>
+		<section id="options">
+			<div>
+				<a  href="./recipes" style="color:black">
+				<h2> Recipes </h2></a>
+				<ul>
+					<li>View all recipes</li>
+					<li>Add a recipe</li>
+					<li>Delete a recipe</li>
+				</ul>
+			</div>
+			<div>
+				<h2> Orders </h2>
+				<ul>
+					<li>View all orders</li>
+					<li>Add an order</li>
+					<li>Delete an order</li>
+				</ul>
+			</div>
+			<div>
+				<h2> Warehouse </h2>
+				<ul>
+					<li>View warehouse inventory</li>
+					<li>View manufacturing budget</li>
+					<li>View assembly line</li>
+				</ul>
+			</div>
+		</section>
 	</body>
 </html>

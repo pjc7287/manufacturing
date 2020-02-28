@@ -21,8 +21,11 @@ public class WebServer {
         // Configuration to serve static files
         staticFileLocation("/public");
 
+        //HTML page reequests
         get("/", new GetHomeRoute(templateEngine));
+        get("/recipes", new GetRecipesRoute(templateEngine));
 
+        //Test requests
         get("/hello", (req, res) -> "Hello World");
 
     }

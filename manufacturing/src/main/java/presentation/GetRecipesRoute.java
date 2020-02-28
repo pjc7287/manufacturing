@@ -8,11 +8,11 @@ import java.util.Map;
 /**
  * This class is responsible for handling a GET request to "/". We will respond with a rendered HTML page
  */
-public class GetHomeRoute implements Route {
+public class GetRecipesRoute implements Route {
 
     private TemplateEngine templateEngine;
 
-    public GetHomeRoute(TemplateEngine templateEngine){
+    public GetRecipesRoute(TemplateEngine templateEngine){
         this.templateEngine = templateEngine;
     }
 
@@ -20,7 +20,7 @@ public class GetHomeRoute implements Route {
 
         Map<String, Object> attributeMap = new HashMap<>();
         attributeMap.put("variablename","Peter");
-        return templateEngine.render(new ModelAndView(attributeMap , "index.ftl"));
+        return templateEngine.render(new ModelAndView(attributeMap , "recipes.ftl"));
     }
 
 }

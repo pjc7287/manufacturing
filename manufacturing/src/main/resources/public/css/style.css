@@ -1,4 +1,54 @@
-body {
-  background-color: #89A6D2;
+main {
+  background-color: #03b6fc;
   text-align: center;
 }
+
+#options{
+    padding: 100px;
+    display: flex;
+    flex-direction: row;
+}
+
+div{
+    margin: auto;
+}
+
+h2 {
+  font-size: 3.0em;
+}
+
+h1{
+    font-size: 4.0em;
+}
+
+ul {
+  list-style-position: inside;
+  padding: 0;
+}
+header{
+    background: #19beff;
+}
+
+body {
+  display: block;
+  margin: 0px;
+}
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+.smallheader {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+a:link, a:visited {
+  text-decoration: none;
+  cursor: pointer;
+}
+
