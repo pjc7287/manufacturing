@@ -8,9 +8,9 @@
 <body>
 <div class="smallheader">
     <a href="./" style="color:white">
-    <h1>KennUware</h1>
+        <h1>KennUware</h1>
     </a>
-    <p style="font-size:25px">Recipes</p>
+    <p style="font-size:25px">Orders</p>
 </div>
 <hr>
 

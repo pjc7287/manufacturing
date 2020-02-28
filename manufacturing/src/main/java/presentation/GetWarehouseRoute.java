@@ -6,13 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This class is responsible for handling a GET request to "/recipes". We will respond with a rendered HTML page
+ * This class is responsible for handling a GET request to "/warehouse". We will respond with a rendered HTML page
  */
-public class GetRecipesRoute implements Route {
+public class GetWarehouseRoute implements Route {
 
     private TemplateEngine templateEngine;
 
-    public GetRecipesRoute(TemplateEngine templateEngine){
+    public GetWarehouseRoute(TemplateEngine templateEngine){
         this.templateEngine = templateEngine;
     }
 
@@ -20,7 +20,7 @@ public class GetRecipesRoute implements Route {
 
         Map<String, Object> attributeMap = new HashMap<>();
         attributeMap.put("variablename","Peter");
-        return templateEngine.render(new ModelAndView(attributeMap , "recipes.ftl"));
+        return templateEngine.render(new ModelAndView(attributeMap , "warehouse.ftl"));
     }
 
 }

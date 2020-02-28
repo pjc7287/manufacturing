@@ -22,7 +22,8 @@
 				</ul>
 			</div>
 			<div>
-				<h2> Orders </h2>
+				<a  href="./orders" style="color:black">
+					<h2> Orders </h2></a>
 				<ul>
 					<li>View all orders</li>
 					<li>Add an order</li>
@@ -30,7 +31,8 @@
 				</ul>
 			</div>
 			<div>
-				<h2> Warehouse </h2>
+				<a  href="./warehouse" style="color:black">
+					<h2> Warehouse </h2></a>
 				<ul>
 					<li>View warehouse inventory</li>
 					<li>View manufacturing budget</li>
