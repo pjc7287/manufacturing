@@ -23,7 +23,6 @@ public class GetRecipesRoute implements Route {
     public Object handle(Request request, Response response){
 
         Map<String, Object> attributeMap = new HashMap<>();
-        attributeMap.put("variablename","Peter");
 
 
         int p = 0;

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/erp-2195-swen-343-01-manufacturing.iml" filepath="$PROJECT_DIR$/erp-2195-swen-343-01-manufacturing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/manufacturing/manufacturing.iml" filepath="$PROJECT_DIR$/manufacturing/manufacturing.iml" />
+    </modules>
+  </component>
+</project>

@@ -19,7 +19,6 @@ public class GetOrdersRoute implements Route {
     public Object handle(Request request, Response response){
 
         Map<String, Object> attributeMap = new HashMap<>();
-        attributeMap.put("variablename","Peter");
         return templateEngine.render(new ModelAndView(attributeMap , "orders.ftl"));
     }
 
