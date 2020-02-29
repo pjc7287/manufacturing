@@ -51,4 +51,10 @@ a:link, a:visited {
   text-decoration: none;
   cursor: pointer;
 }
+#recipelist{
+    border: 1px solid black;
+    width: 1200px;
+    margin:0px;
+    padding:0px;
+}
 
