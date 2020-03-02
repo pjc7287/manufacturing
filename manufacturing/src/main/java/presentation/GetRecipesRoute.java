@@ -1,12 +1,12 @@
 package presentation;
 
-import data.Cell;
-import data.Table;
-import data.TableRow;
+import data.Database;
+import domain.Recipe;
 import spark.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,30 +15,29 @@ import java.util.Map;
 public class GetRecipesRoute implements Route {
 
     private TemplateEngine templateEngine;
+    private Database db;
 
-    public GetRecipesRoute(TemplateEngine templateEngine){
+    public GetRecipesRoute(TemplateEngine templateEngine, Database db){
         this.templateEngine = templateEngine;
+        this.db = db;
     }
 
     public Object handle(Request request, Response response){
 
         Map<String, Object> attributeMap = new HashMap<>();
 
+        List<List<String>> table = new ArrayList<>();
+        System.out.println("Getting recipes...");
+        List<Recipe> recipes = db.getRecipeTable().getAllRecipes();
+        System.out.println("Recipes received");
 
-        int p = 0;
-        ArrayList<TableRow> rows = new ArrayList<>();
-        for(int i = 0; i <100; i++){
-            ArrayList<Cell> row = new ArrayList<>();
-            for(int j = 0; j<10; j++){
-                Cell c = new Cell("Data "+ Integer.toString(p++));
-                row.add(c);
-            }
-            TableRow tablerow = new TableRow(row);
-            rows.add(tablerow);
+        for(Recipe r:recipes){
+            table.add(r.toList());
         }
-        Table table = new Table(rows);
 
-        attributeMap.put("table",table);
+        attributeMap.put("table", table);
+
+        //Todo: GET ALL RECIPES FROM DB, Put into spark and print them in a table in ftl file!!
 
         return templateEngine.render(new ModelAndView(attributeMap , "recipes.ftl"));
     }

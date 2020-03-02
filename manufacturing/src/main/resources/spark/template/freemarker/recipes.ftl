@@ -18,10 +18,10 @@
     <div>
         <table id="recipelist">
             <tbody>
-            <#list table.iterator() as row>
+            <#list table as row>
                 <tr>
-                    <#list row.iterator() as cell>
-                        <td style="border: 1px solid black;">${cell.data()}</td>
+                    <#list row as str>
+                        <td style="border: 1px solid black;">${str}</td>
                     </#list>
                 </tr>
             </#list>

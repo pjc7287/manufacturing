@@ -19,7 +19,7 @@ public class GetHomeRoute implements Route {
     public Object handle(Request request, Response response){
 
         Map<String, Object> attributeMap = new HashMap<>();
-        attributeMap.put("variablename","Peter");
+        attributeMap.put("somevariablename","VariableValue");
         return templateEngine.render(new ModelAndView(attributeMap , "index.ftl"));
     }
 

@@ -67,6 +67,20 @@
             <version>${freemarker.version}</version>
         </dependency>
 
+        <!-- Sql2o library -->
+        <dependency>
+            <groupId>org.sql2o</groupId>
+            <artifactId>sql2o</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+
+        <!-- MySQL library -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.12</version>
+        </dependency>
+
         <!-- JSON utils -->
         <dependency>
             <groupId>com.google.code.gson</groupId>

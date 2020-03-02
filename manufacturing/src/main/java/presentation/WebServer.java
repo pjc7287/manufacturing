@@ -1,5 +1,6 @@
 package presentation;
 
+import data.Database;
 import spark.TemplateEngine;
 
 import static spark.Spark.*;
@@ -7,9 +8,11 @@ import static spark.Spark.*;
 public class WebServer {
 
     private TemplateEngine templateEngine;
+    private Database db;
 
-    public WebServer(TemplateEngine templateEngine){
+    public WebServer(TemplateEngine templateEngine, Database db){
         this.templateEngine = templateEngine;
+        this.db = db;
         this.initializeRoutes();
     }
 
@@ -23,7 +26,7 @@ public class WebServer {
 
         //HTML page reequests
         get("/", new GetHomeRoute(templateEngine));
-        get("/recipes", new GetRecipesRoute(templateEngine));
+        get("/recipes", new GetRecipesRoute(templateEngine, db));
         get("/orders", new GetOrdersRoute(templateEngine));
         get("/warehouse", new GetWarehouseRoute(templateEngine));
 
