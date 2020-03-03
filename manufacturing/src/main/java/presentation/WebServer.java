@@ -28,11 +28,12 @@ public class WebServer {
         get("/", new GetHomeRoute(templateEngine));
 
         get("/recipes", new GetRecipesRoute(templateEngine, db));
-
-        get("/recipes/new", new GetNewRecipeRoute(templateEngine));
         post("/recipes", new PostNewRecipeRoute(templateEngine, db));
+        get("/recipes/new", new GetNewRecipeRoute(templateEngine));
+        post("/recipes/new", new PostNewIngredientRoute(templateEngine, db));
+        get("/recipes/info/:rid", new GetRecipeInfoRoute(templateEngine,db));
 
-        get("/orders", new GetOrdersRoute(templateEngine));
+        get("/orders", new GetOrdersRoute(templateEngine, db));
 
         get("/warehouse", new GetWarehouseRoute(templateEngine));
 

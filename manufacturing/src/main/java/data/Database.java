@@ -23,6 +23,7 @@ public class Database {
     private PalletTable palletsTable;
     private ContainersTable containersTable;
     private WorkOrderTable workOrderTable;
+    private IngredientTable ingredientTable;
 
 
     public Database(){
@@ -31,7 +32,8 @@ public class Database {
         this.partsTable = new PartsTable(sql2o);
         this.palletsTable = new PalletTable(sql2o);
         this.containersTable = new ContainersTable(sql2o);
-        //this.workOrderTable = new WorkOrderTable(sql2o);
+        this.workOrderTable = new WorkOrderTable(sql2o);
+        this.ingredientTable = new IngredientTable(sql2o);
     }
 
     public WorkOrderTable getWorkOrderTable() {
@@ -51,6 +53,10 @@ public class Database {
     public PalletTable getPalletsTable() { return palletsTable; }
 
     public ContainersTable getContainersTable() { return containersTable; }
+
+    public IngredientTable getIngredientTable(){ return ingredientTable;}
+
+
 
     /**
     public static void main(String[] args){

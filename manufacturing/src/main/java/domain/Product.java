@@ -9,6 +9,7 @@ public class Product {
     private int serial_num;
     private String warehouse_loc;
     private int container_id;
+
     private String type;
     private String desc;
 
@@ -74,6 +75,14 @@ public class Product {
         list.add(type);
         list.add(desc);
         return list;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }
 
