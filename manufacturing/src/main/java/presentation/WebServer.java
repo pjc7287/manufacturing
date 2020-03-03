@@ -33,7 +33,7 @@ public class WebServer {
         post("/recipes/new", new PostNewIngredientRoute(templateEngine, db));
         get("/recipes/info/:rid", new GetRecipeInfoRoute(templateEngine,db));
 
-        get("/orders", new GetOrdersRoute(templateEngine));
+        get("/orders", new GetOrdersRoute(templateEngine, db));
 
         get("/warehouse", new GetWarehouseRoute(templateEngine));
 

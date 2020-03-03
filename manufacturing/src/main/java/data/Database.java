@@ -27,8 +27,8 @@ public class Database {
         this.productTable = new ProductTable(sql2o);
         this.recipeTable = new RecipeTable(sql2o);
         this.partsTable = new PartsTable(sql2o);
+        this.workOrderTable = new WorkOrderTable(sql2o);
         this.ingredientTable = new IngredientTable(sql2o);
-        //this.workOrderTable = new WorkOrderTable(sql2o);
     }
 
     public WorkOrderTable getWorkOrderTable() {

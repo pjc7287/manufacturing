@@ -14,7 +14,7 @@ public class WorkOrderTable {
 
     public List<WorkOrder> getAllWorkOrders(){
         String sql =
-                "SELECT id, action, prod_id, \'desc'" +
+                "SELECT id, action, prod_id, `desc` " +
                         "FROM workorder";
         try(Connection con = sql2o.open()){
             List<WorkOrder> result = con.createQuery(sql).executeAndFetch(WorkOrder.class);
@@ -26,7 +26,7 @@ public class WorkOrderTable {
     public boolean addWorkOrder(WorkOrder workOrder){
         String sql =
                 "INSERT into workorder VALUES (" +
-                        Integer.toString(workOrder.getId())+ ", \"" + workOrder.getAction() +"\", " + Integer.toString(workOrder.getProd_id()) + ", \"" + workOrder.getDesc() + ")";
+                        Integer.toString(workOrder.getId())+ ", \"" + workOrder.getAction() +"\", " + Integer.toString(workOrder.getProd_id()) + ", \"" + workOrder.getDesc() + "\" )";
 
         try(Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
