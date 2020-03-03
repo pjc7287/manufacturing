@@ -10,7 +10,7 @@
         <a href="/" style="color:white">
             <h1>KennUware</h1>
         </a>
-        <p style="font-size:25px">Orders</p>
+        <p style="font-size:25px">Work Orders</p>
     </div>
     <hr>
 

@@ -33,5 +33,14 @@ public class WorkOrder {
 
     public String getDesc() { return desc; }
 
+    public List toList(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add(Integer.toString(id));
+        list.add(action);
+        list.add(Integer.toString(prod_id));
+        list.add(desc);
+        return list;
+    }
+
 
 }
