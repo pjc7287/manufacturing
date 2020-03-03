@@ -14,7 +14,7 @@ public class WorkOrderTable {
 
     public List<WorkOrder> getAllWorkOrders(){
         String sql =
-                "SELECT id, action, prod_id, desc" +
+                "SELECT id, action, prod_id, \'desc'" +
                         "FROM workorder";
         try(Connection con = sql2o.open()){
             List<WorkOrder> result = con.createQuery(sql).executeAndFetch(WorkOrder.class);
