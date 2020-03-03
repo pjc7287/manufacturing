@@ -10,6 +10,7 @@ public class Recipe {
     private int prod_id;
     private String desc;
 
+
     public Recipe(int id, String name, int prod_id, String desc){
         this.id = id;
         this.name = name;
@@ -24,6 +25,7 @@ public class Recipe {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public String getName() {
         return name;

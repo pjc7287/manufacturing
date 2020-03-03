@@ -1,5 +1,8 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Part {
 
     private int part_id;
@@ -58,11 +61,19 @@ public class Part {
         this.defective = defective;
     }
 
-    public String getDesc() {
-        return desc;
-    }
+    public String getDesc(){ return desc; }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDesc(String desc) { this.desc = desc; }
+
+    public List toList(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add(Integer.toString(part_id));
+        list.add(Integer.toString(serial_num));
+        list.add(warehouse_loc);
+        list.add(Integer.toString(container_id));
+        list.add(Boolean.toString(defective));
+        list.add(desc);
+        return list;
     }
 }
+

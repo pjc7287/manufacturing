@@ -37,6 +37,14 @@ public class WebServer {
 
         get("/warehouse", new GetWarehouseRoute(templateEngine));
 
+        get("/inventory", new GetPartsRoute(templateEngine, db));
+
+        get("/product", new GetProductRoute(templateEngine, db));
+
+        get("/pallet", new GetPalletRoute(templateEngine, db));
+
+        get("/container", new GetContainerRoute(templateEngine, db));
+
 
 
         //Test requests
@@ -44,3 +52,4 @@ public class WebServer {
 
     }
 }
+

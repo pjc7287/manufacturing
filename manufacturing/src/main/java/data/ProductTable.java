@@ -19,9 +19,8 @@ public class ProductTable {
     public List<Product> getAllProducts(){
         //
         String sql =
-                "SELECT prod_id, serial_num, warehouse_loc, container_id, condition_code " +
+                "SELECT prod_id, serial_num, warehouse_loc, container_id, type, \'desc\'" +
                         "FROM product";
-
         try(Connection con = sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Product.class);
         }
@@ -52,3 +51,4 @@ public class ProductTable {
     }
  */
 }
+

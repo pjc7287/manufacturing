@@ -1,28 +1,32 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
 
-    private String prod_id;
+    private int prod_id;
     private int serial_num;
-    private String warehuse_loc;
+    private String warehouse_loc;
     private int container_id;
-    private String condition_code;
+
+    private String type;
     private String desc;
 
-    public Product(String prod_id, int serial_num, String warehuse_loc, int container_id, String condition_code, String desc) {
+    public Product(int prod_id, int serial_num, String warehouse_loc, int container_id, String type, String desc) {
         this.prod_id = prod_id;
         this.serial_num = serial_num;
-        this.warehuse_loc = warehuse_loc;
+        this.warehouse_loc = warehouse_loc;
         this.container_id = container_id;
-        this.condition_code = condition_code;
+        this.type = type;
         this.desc = desc;
     }
 
-    public String getProd_id() {
+    public int getProd_id() {
         return prod_id;
     }
 
-    public void setProd_id(String prod_id) {
+    public void setProd_id(int prod_id) {
         this.prod_id = prod_id;
     }
 
@@ -34,12 +38,12 @@ public class Product {
         this.serial_num = serial_num;
     }
 
-    public String getWarehuse_loc() {
-        return warehuse_loc;
+    public String getWarehouse_loc() {
+        return warehouse_loc;
     }
 
-    public void setWarehuse_loc(String warehuse_loc) {
-        this.warehuse_loc = warehuse_loc;
+    public void setWarehouse_loc(String warehouse_loc) {
+        this.warehouse_loc = warehouse_loc;
     }
 
     public int getContainer_id() {
@@ -50,12 +54,27 @@ public class Product {
         this.container_id = container_id;
     }
 
-    public String getCondition_code() {
-        return condition_code;
+    public String getType() {
+        return type;
     }
 
-    public void setCondition_code(String condition_code) {
-        this.condition_code = condition_code;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDesc(){ return desc; }
+
+    public void setDesc(String desc) { this.desc = desc; }
+
+    public List toList(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add(Integer.toString(prod_id));
+        list.add(Integer.toString(serial_num));
+        list.add(warehouse_loc);
+        list.add(Integer.toString(container_id));
+        list.add(type);
+        list.add(desc);
+        return list;
     }
 
     public String getDesc() {
@@ -66,3 +85,4 @@ public class Product {
         this.desc = desc;
     }
 }
+
