@@ -11,9 +11,9 @@ import java.util.List;
 public class Database {
 
 
-    private static final String DATABASE_URL = "jdbc:mysql://database-1.cxqhdeaxyezz.us-east-1.rds.amazonaws.com:3306/manufacturing";
+    private static final String DATABASE_URL = "jdbc:mysql://database-2.cjh0gwusmpx7.us-east-1.rds.amazonaws.com:3306/pc1";
     private static final String DATABASE_USERNAME = "admin";
-    private static final String DATABASE_PASSWORD = "password";
+    private static final String DATABASE_PASSWORD = "manufacturing";
 
     private final Sql2o sql2o = new Sql2o(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
 

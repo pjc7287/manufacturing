@@ -62,10 +62,6 @@ public class Product {
         this.type = type;
     }
 
-    public String getDesc(){ return desc; }
-
-    public void setDesc(String desc) { this.desc = desc; }
-
     public List toList(){
         ArrayList<String> list = new ArrayList<>();
         list.add(Integer.toString(prod_id));

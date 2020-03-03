@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,15 +28,21 @@
                     <th>Recipe ID</th>
                     <th>Name</th>
                     <th>Product ID</th>
+                    <th>Description</th>
                     <th></th>
                 </tr>
             <#list table as row>
                 <tr>
-                    <#list row as str>
-                        <td style="border: 1px solid black; margin: 0px;">${str}</td>
-                    </#list>
+                    <td style="border: 1px solid black; margin: 0px;">${row[0]}</td>
+
+                    <td style="border: 1px solid black; margin: 0px;"><a href="./recipes/info/${row[0]}">${row[1]}</a></td>
+
+                    <td style="border: 1px solid black; margin: 0px;">${row[2]}</td>
+                    <td style="border: 1px solid black; margin: 0px;">${row[3]}</td>
                     <td  style="border: 1px solid black;">
-                            <button id="del">Delete</button>
+                        <form action=# method="post">
+                            <button id="del" name="delete_id" value="${row[0]}">Delete</button>
+                        </form>
                     </td>
                 </tr>
             </#list>
@@ -43,8 +50,5 @@
         </table>
     </div>
     </section>
-
-
-
 </body>
 </html>
