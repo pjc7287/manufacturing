@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="smallheader">
-    <a href="./" style="color:white">
+    <a href="/" style="color:white">
         <h1>KennUware</h1>
     </a>
     <p style="font-size:25px">Warehouse</p>

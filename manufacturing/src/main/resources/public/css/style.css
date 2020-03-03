@@ -8,11 +8,9 @@ main {
     display: flex;
     flex-direction: row;
 }
-
 div{
     margin: auto;
 }
-
 h2 {
   font-size: 3.0em;
 }
@@ -53,8 +51,14 @@ a:link, a:visited {
 }
 #recipelist{
     border: 1px solid black;
-    width: 1200px;
-    margin:0px;
-    padding:0px;
+    width: 80%;
+    border-collapse: collapse;
+}
+#del{
+background-color: red;
+text-align: center;
+display: inline-block;
+border-radius: 100%;
+color:white;
 }
 

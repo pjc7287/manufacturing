@@ -48,6 +48,7 @@ public class RecipeTable {
 
         try(Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
+            System.out.println("Added recipe");
             return true;
         }
     }

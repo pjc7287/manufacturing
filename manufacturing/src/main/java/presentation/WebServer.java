@@ -26,9 +26,16 @@ public class WebServer {
 
         //HTML page reequests
         get("/", new GetHomeRoute(templateEngine));
+
         get("/recipes", new GetRecipesRoute(templateEngine, db));
+        get("/recipes/new", new GetNewRecipeRoute(templateEngine));
+        post("/recipes", new PostNewRecipeRoute(templateEngine, db));
+
         get("/orders", new GetOrdersRoute(templateEngine));
+
         get("/warehouse", new GetWarehouseRoute(templateEngine));
+
+
 
         //Test requests
         get("/hello", (req, res) -> "Hello World");
