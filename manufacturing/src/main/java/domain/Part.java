@@ -7,13 +7,15 @@ public class Part {
     private String warehouse_loc;
     private int container_id;
     private boolean defective;
+    private String desc;
 
-    public Part(int part_id, int serial_num, String warehouse_loc, int container_id, boolean defective) {
+    public Part(int part_id, int serial_num, String warehouse_loc, int container_id, boolean defective, String desc) {
         this.part_id = part_id;
         this.serial_num = serial_num;
         this.warehouse_loc = warehouse_loc;
         this.container_id = container_id;
         this.defective = defective;
+        this.desc = desc;
     }
 
     public int getPart_id() {
@@ -54,5 +56,13 @@ public class Part {
 
     public void setDefective(boolean defective) {
         this.defective = defective;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

@@ -20,12 +20,14 @@ public class Database {
     private RecipeTable recipeTable;
     private PartsTable partsTable;
     private WorkOrderTable workOrderTable;
+    private IngredientTable ingredientTable;
 
 
     public Database(){
         this.productTable = new ProductTable(sql2o);
         this.recipeTable = new RecipeTable(sql2o);
         this.partsTable = new PartsTable(sql2o);
+        this.ingredientTable = new IngredientTable(sql2o);
         //this.workOrderTable = new WorkOrderTable(sql2o);
     }
 
@@ -44,6 +46,9 @@ public class Database {
     public RecipeTable getRecipeTable() {
         return recipeTable;
     }
+
+    public IngredientTable getIngredientTable(){ return ingredientTable;}
+
 
     /**
     public static void main(String[] args){
