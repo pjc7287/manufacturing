@@ -7,13 +7,15 @@ public class Product {
     private String warehuse_loc;
     private int container_id;
     private String condition_code;
+    private String desc;
 
-    public Product(String prod_id, int serial_num, String warehuse_loc, int container_id, String condition_code) {
+    public Product(String prod_id, int serial_num, String warehuse_loc, int container_id, String condition_code, String desc) {
         this.prod_id = prod_id;
         this.serial_num = serial_num;
         this.warehuse_loc = warehuse_loc;
         this.container_id = container_id;
         this.condition_code = condition_code;
+        this.desc = desc;
     }
 
     public String getProd_id() {
@@ -54,5 +56,13 @@ public class Product {
 
     public void setCondition_code(String condition_code) {
         this.condition_code = condition_code;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 }

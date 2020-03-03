@@ -6,13 +6,15 @@ import java.util.List;
 public class Recipe {
 
     private int id;
-    private String title;
+    private String name;
     private int prod_id;
+    private String desc;
 
-    public Recipe(int id, String title, int prod_id){
+    public Recipe(int id, String name, int prod_id, String desc){
         this.id = id;
-        this.title = title;
+        this.name = name;
         this.prod_id = prod_id;
+        this.desc = desc;
     }
 
     public int getId() {
@@ -23,12 +25,12 @@ public class Recipe {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String title) {
+        this.name = title;
     }
 
     public int getProd_id() {
@@ -39,11 +41,20 @@ public class Recipe {
         this.prod_id = prod_id;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
     public List toList(){
         ArrayList<String> list = new ArrayList<>();
         list.add(Integer.toString(id));
-        list.add(title);
+        list.add(name);
         list.add(Integer.toString(prod_id));
+        list.add(desc);
         return list;
     }
 }

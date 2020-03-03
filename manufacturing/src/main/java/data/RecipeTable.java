@@ -25,7 +25,7 @@ public class RecipeTable {
     public List<Recipe> getAllRecipes(){
         //
         String sql =
-                "SELECT id, title, prod_id " +
+                "SELECT id, name, prod_id, `desc` " +
                         "FROM recipe";
 
         try(Connection con = sql2o.open()) {
@@ -36,6 +36,23 @@ public class RecipeTable {
     }
 
     /**
+     * Gets all of the recipes from the database and populates a list with Recipe objects
+     * @return List<Recipe> list - List of Recipe objects representing the table
+     */
+    public List<Recipe> getRecipe(int rid){
+        //
+        String sql =
+                "SELECT * FROM recipe WHERE id=" + Integer.toString(rid);
+
+        try(Connection con = sql2o.open()) {
+            List<Recipe> result = con.createQuery(sql).executeAndFetch(Recipe.class);
+            con.close();
+            return result;
+        }
+    }
+
+
+    /**
      * Adds a recipe to the database, given a Recipe object representing a recipe
      * @param recipe - Recipe object representing the recipe to be added
      * @return true/false depending if the recipe was added
@@ -44,7 +61,7 @@ public class RecipeTable {
         //
         String sql =
                 "INSERT into recipe VALUES (" +
-                        Integer.toString(recipe.getId())+ ", \"" + recipe.getTitle() +"\", " + Integer.toString(recipe.getProd_id()) +")";
+                        Integer.toString(recipe.getId())+ ", \"" + recipe.getName() +"\", " + Integer.toString(recipe.getProd_id()) +", \"" + recipe.getDesc()+"\" )";
 
         try(Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
