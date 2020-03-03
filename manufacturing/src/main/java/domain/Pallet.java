@@ -36,3 +36,4 @@ public class Pallet {
         return list;
     }
 }
+

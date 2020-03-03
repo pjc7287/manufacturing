@@ -42,3 +42,4 @@ public class GetPartsRoute implements Route {
         return templateEngine.render(new ModelAndView(attributeMap , "inventory.ftl"));
     }
 }
+

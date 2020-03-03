@@ -42,3 +42,4 @@ public class GetPalletRoute implements Route {
         return templateEngine.render(new ModelAndView(attributeMap , "pallet.ftl"));
     }
 }
+

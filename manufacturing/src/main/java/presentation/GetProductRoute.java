@@ -40,3 +40,4 @@ public class GetProductRoute implements Route {
         return templateEngine.render(new ModelAndView(attributeMap , "product.ftl"));
     }
 }
+
