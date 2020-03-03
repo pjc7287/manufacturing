@@ -15,11 +15,14 @@ public class PartsTable {
         this.sql2o = sql2o;
     }
 
-    //TODO: Update SQL statement to match table params
+    /**
+     * Gets all of the parts from the database and populates a list with part objects
+     * @return List<Part> list - List of Part objects representing the table
+     */
     public List<Part> getAllParts(){
         //
         String sql =
-                "SELECT part_id, serial_num, warehouse_loc, container_id, defective " +
+                "SELECT part_id, serial_num, warehouse_loc, container_id, defective, \'desc\'" +
                         "FROM part";
 
         try(Connection con = sql2o.open()) {

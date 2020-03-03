@@ -2,12 +2,6 @@ main {
   background-color: #03b6fc;
   text-align: center;
 }
-
-#options{
-    padding: 100px;
-    display: flex;
-    flex-direction: row;
-}
 div{
     margin: auto;
 }
@@ -45,6 +39,11 @@ body {
   color: white;
   font-size: 15px;
 }
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
 a:link, a:visited {
   text-decoration: none;
   cursor: pointer;
@@ -55,10 +54,21 @@ a:link, a:visited {
     border-collapse: collapse;
 }
 #del{
-background-color: red;
-text-align: center;
-display: inline-block;
-border-radius: 100%;
-color:white;
+	background-color: red;
+	text-align: center;
+	display: inline-block;
+	border-radius: 100%;
+	color:white;
 }
-
+#options{
+    padding: 100px;
+    display: flex;
+    flex-direction: row;
+}
+#add{
+	background-color: green;
+	text-align: center;
+	display: inline-block;
+	border-radius: 100%;
+	color:white;
+}

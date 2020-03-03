@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Container {
 
@@ -36,5 +37,13 @@ public class Container {
 
     public void setPallet_id(int pallet_id) {
         this.pallet_id = pallet_id;
+    }
+
+    public List toList(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add(Integer.toString(id));
+        list.add(warehouse_loc);
+        list.add(Integer.toString(pallet_id));
+        return list;
     }
 }

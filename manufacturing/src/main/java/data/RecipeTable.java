@@ -25,7 +25,7 @@ public class RecipeTable {
     public List<Recipe> getAllRecipes(){
         //
         String sql =
-                "SELECT id, title, prod_id " +
+                "SELECT id, name, prod_id " +
                         "FROM recipe";
 
         try(Connection con = sql2o.open()) {
