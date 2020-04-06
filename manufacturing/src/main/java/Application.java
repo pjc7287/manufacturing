@@ -1,3 +1,4 @@
+import assembly.AssemblyLine;
 import database.Database;
 import routes.WebServer;
 
@@ -11,11 +12,12 @@ public class Application {
 
         final TemplateEngine templateEngine = new FreeMarkerEngine();
         final Database db = new Database();
+        final AssemblyLine assemblyLine = new AssemblyLine();
 
         Spark.exception(Exception.class, (exception, request, response) -> {
             exception.printStackTrace();
         });
 
-        WebServer server = new WebServer(templateEngine, db);
+        WebServer server = new WebServer(templateEngine, db, assemblyLine);
     }
 }

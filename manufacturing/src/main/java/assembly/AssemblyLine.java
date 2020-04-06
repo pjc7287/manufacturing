@@ -7,8 +7,8 @@ import java.util.Deque;
 public class AssemblyLine{
 
 
-    private Deque<WorkOrder> orders;
-    private WorkOrder currentOrder;
+    private Deque<Operation> orderQueue;
+    private Operation  ;
 
     public AssemblyLine(){
         //TODO: Initialize workorder queue from database

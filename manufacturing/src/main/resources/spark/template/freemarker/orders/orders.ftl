@@ -24,7 +24,7 @@
                 <tr>
                     <th>Work Order ID</th>
                     <th>Action</th>
-                    <th>Quantity</th>
+                    <th>Progress</th>
                     <th>Warehouse</th>
                     <th>Product ID</th>
                     <th>Description</th>
