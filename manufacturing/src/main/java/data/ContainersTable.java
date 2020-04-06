@@ -1,6 +1,7 @@
 package data;
 
 import domain.Container;
+import domain.Recipe;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -29,30 +30,52 @@ public class ContainersTable {
         }
     }
 
-/**
- //TODO: Update SQL statement to be a valid INSERT statement that amtches the given recipe
- //
-     public boolean addPart(Part part){
-         String sql =
-         "SELECT id, description, duedate " +
-            "FROM tasks";
-
-         try(Connection con = sql2o.open()) {
-            return con.createQuery(sql).executeUpdate();
-         }
-     }
-
- //TODO: Update SQL statement to be a valid DELETE statement that amtches the given recipe
- //
-     public boolean deletePart(Part part){
+    public List<Recipe> getContainer(int cid){
+        //
         String sql =
-        "SELECT id, description, duedate " +
-            "FROM tasks";
+                "SELECT * FROM container WHERE id=" + Integer.toString(cid);
 
         try(Connection con = sql2o.open()) {
-          return con.createQuery(sql).executeUpdate();
+            List<Recipe> result = con.createQuery(sql).executeAndFetch(Recipe.class);
+            con.close();
+            return result;
         }
-     }
- */
-}
+    }
 
+    public boolean updateContainerPallet(String cid, String pallet_id){
+        //
+        String sql =
+                "UPDATE container SET container.pallet_id = '" + pallet_id + "' WHERE container.id = " + cid ;
+
+        try(Connection con = sql2o.open()) {
+            con.createQuery(sql).executeUpdate();
+            System.out.println("Updated Container");
+            return true;
+        }
+    }
+
+    public boolean addContainer(Container container){
+        //
+        String sql =
+                "INSERT into container VALUES (" +
+                        Integer.toString(container.getId())+ ", \"" + container.getWarehouse_loc() +"\", " + Integer.toString(container.getPallet_id()) + "\" )";
+
+        try(Connection con = sql2o.open()) {
+            con.createQuery(sql).executeUpdate();
+            System.out.println("Added Container");
+            return true;
+        }
+    }
+
+    public boolean deleteContainer(int id){
+        //
+        String sql =
+                "DELETE FROM container WHERE id=" + Integer.toString(id);
+
+        try(Connection con = sql2o.open()) {
+            con.createQuery(sql).executeUpdate();
+            System.out.println("Deleted Container");
+            return true;
+        }
+    }
+}

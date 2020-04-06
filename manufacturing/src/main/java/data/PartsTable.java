@@ -1,5 +1,6 @@
 package data;
 
+import domain.Pallet;
 import domain.Part;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -29,30 +30,53 @@ public class PartsTable {
             return con.createQuery(sql).executeAndFetch(Part.class);
         }
     }
-/**
-    //TODO: Update SQL statement to be a valid INSERT statement that amtches the given recipe
+    public List<Part> getPart(int pid){
+        //
+        String sql =
+                "SELECT * FROM part WHERE part_id=" + Integer.toString(pid);
+
+        try(Connection con = sql2o.open()) {
+            List<Part> result = con.createQuery(sql).executeAndFetch(Part.class);
+            con.close();
+            return result;
+        }
+    }
+
+    public boolean updatePartContainer(String serial_num, String container_id){
+        //
+        String sql =
+                "UPDATE part SET container_id = " + container_id + " WHERE serial_num = " + serial_num ;
+
+        try(Connection con = sql2o.open()) {
+            con.createQuery(sql).executeUpdate();
+            System.out.println("Updated Part");
+            return true;
+        }
+    }
+
     public boolean addPart(Part part){
         //
         String sql =
-                "SELECT id, description, duedate " +
-                        "FROM tasks";
+                "INSERT into part VALUES (" +
+                        Integer.toString(part.getPart_id())+ ", \"" + part.getSerial_num() +"\", " + part.getWarehouse_loc() +"\", "+ Integer.toString(part.getContainer_id()) +"\", "+ part.isDefective() +"\", "+ part.isDefective() + "\" )";
 
         try(Connection con = sql2o.open()) {
-            return con.createQuery(sql).executeUpdate();
+            con.createQuery(sql).executeUpdate();
+            System.out.println("Added Part");
+            return true;
         }
     }
 
-    //TODO: Update SQL statement to be a valid DELETE statement that amtches the given recipe
-    public boolean deletePart(Part part){
+    public boolean deletePart(int id){
         //
         String sql =
-                "SELECT id, description, duedate " +
-                        "FROM tasks";
+                "DELETE FROM part WHERE part_id=" + Integer.toString(id);
 
         try(Connection con = sql2o.open()) {
-            return con.createQuery(sql).executeUpdate();
+            con.createQuery(sql).executeUpdate();
+            System.out.println("Deleted Part");
+            return true;
         }
     }
-*/
 }
 

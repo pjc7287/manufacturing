@@ -11,7 +11,7 @@ import java.util.List;
 public class Database {
 
 
-    private static final String DATABASE_URL = "jdbc:mysql://database-1.cxqhdeaxyezz.us-east-1.rds.amazonaws.com:3306/manufacturing";
+    private static final String DATABASE_URL = "jdbc:mysql://database-1.cxqhdeaxyezz.us-east-1.rds.amazonaws.com:3306/manufacturing?autoReconnect=true&useSSL=false";
     private static final String DATABASE_USERNAME = "admin";
     private static final String DATABASE_PASSWORD = "password";
 

@@ -76,13 +76,5 @@ public class Product {
         list.add(desc);
         return list;
     }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 }
 

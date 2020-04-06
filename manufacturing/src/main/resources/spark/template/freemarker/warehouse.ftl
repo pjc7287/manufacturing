@@ -21,6 +21,7 @@
 					<li><a href="./inventory" style="color:black"> View Parts </a></li>
 					<li><a href="./container" style="color:black"> View Containers </a></li>
 					<li><a href="./pallet" style="color:black"> View Pallets </a></li>
+					<li><a href="./InvManagement" style="color:black"> Inventory management </a></li>
 				</ul>
 			</div>
 			<div>

@@ -34,6 +34,11 @@
 								<td  style="border: 1px solid black;">
 										<button id="del">Delete</button>
 								</td>
+								<td  style="border: 1px solid black;">
+										<a href="/InvManagement">
+											<button id="del">Change Container</button>
+										</a>
+								</td>
 							</tr>
 						</#list>
 					</tbody>

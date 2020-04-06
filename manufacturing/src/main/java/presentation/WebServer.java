@@ -24,7 +24,7 @@ public class WebServer {
         // Configuration to serve static files
         staticFileLocation("/public");
 
-        //HTML page reequests
+        //HTML page requests
         get("/", new GetHomeRoute(templateEngine));
 
         get("/recipes", new GetRecipesRoute(templateEngine, db));
@@ -44,6 +44,11 @@ public class WebServer {
         get("/pallet", new GetPalletRoute(templateEngine, db));
 
         get("/container", new GetContainerRoute(templateEngine, db));
+
+        get("/InvManagement", new GetInvManagementRoute(templateEngine, db));
+        post("/InvManagement", new PostContainerPallet(templateEngine, db));
+        post("/InvManagement", new PostProductContainer(templateEngine, db));
+        post("/InvManagement", new PostPartsContainer(templateEngine, db));
 
 
 
