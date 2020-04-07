@@ -19,13 +19,13 @@
         <button class="navButton"> Home </button>
     </a>
     <a href="/catalog">
-        <button class="navButton" style="background-color:#7d7d8c"> Catalog </button>
+        <button class="navButton"> Catalog </button>
     </a>
     <a href="/orders">
         <button class="navButton"> Orders </button>
     </a>
     <a href="/inventory">
-        <button class="navButton"> Inventory </button>
+        <button class="navButton" style="background-color:#7d7d8c"> Inventory </button>
     </a>
     <a href="/budget">
         <button class="navButton"> Budget </button>
@@ -33,19 +33,18 @@
 </div>
     <section style="display:flex; flex-direction:row">
         <div>
-            <p style="font-size: 2.0em">Define New Part:</p><br><br>
-            <form action="/catalog/new/part" method ="post" id="newPartForm">
+            <p style="font-size: 2.0em">Buy New Pallet:</p><br><br>
+            <form action="/inventory/buy_pallet" method ="post" id="newPalletForm">
                 <p>Part Information:</p><br>
-                <input type="text" id="title" name="title" required="required" placeholder="Part Name"><br><br>
-                <input type="number" min=".01" step="any" id="cost" name="cost" required="required" placeholder="Cost"/><br><br>
-                <input type="text" id="info" name="info" required="required" placeholder="Description"><br><br>
+                <input type="text" id="warehouse_loc" name="warehouse_loc" required="required" placeholder="Outgoing Warehouse Location"><br><br>
+                <input type="number" min="1" max="4" step="any" id="boxquantity" name="boxquantity" required="required" placeholder="Number of Boxes"/><br><br>
                 <br><br>
-                <input type="submit" value="Save Part" class="fancyButton">
+                <input type="submit" value="Purchase" class="fancyButton">
             </form>
             <hr>
             <br>
-            <a href="/catalog">
-                <button class="fancyButton">Back to Catalog</button>
+            <a href="/inventory">
+                <button class="fancyButton">Back to Inventory</button>
             </a>
         </div>
     </section>

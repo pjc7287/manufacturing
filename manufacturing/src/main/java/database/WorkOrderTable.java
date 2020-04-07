@@ -23,6 +23,16 @@ public class WorkOrderTable {
         }
     }
 
+    public WorkOrder getWorkOrder(String id){
+        String sql =
+                "SELECT * FROM workorder where id =\"" + id + "\"";
+        try(Connection con = sql2o.open()){
+            List<WorkOrder> result = con.createQuery(sql).executeAndFetch(WorkOrder.class);
+            con.close();
+            return result.get(0);
+        }
+    }
+
     public boolean addWorkOrder(WorkOrder wo){
         String sql =
                 "INSERT into workorder  VALUES (" +

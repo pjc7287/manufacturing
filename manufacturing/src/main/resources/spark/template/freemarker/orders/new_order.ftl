@@ -14,7 +14,23 @@
         <p class="headerLink" style="font-size:25px">Work Orders</p>
     </a>
 </div>
-<hr>
+<div class="navbar">
+    <a href="/">
+        <button class="navButton"> Home </button>
+    </a>
+    <a href="/catalog">
+        <button class="navButton"> Catalog </button>
+    </a>
+    <a href="/orders">
+        <button class="navButton" style="background-color:#7d7d8c"> Orders </button>
+    </a>
+    <a href="/inventory">
+        <button class="navButton"> Inventory </button>
+    </a>
+    <a href="/budget">
+        <button class="navButton"> Budget </button>
+    </a>
+</div>
     <section style="display:flex; flex-direction:row">
         <div>
             <p style="font-size: 2.0em">Make New Order:</p><br><br>

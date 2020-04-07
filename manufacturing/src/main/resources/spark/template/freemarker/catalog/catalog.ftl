@@ -12,7 +12,23 @@
         </a>
         <p style="font-size:25px">Catalog</p>
     </div>
-    <hr>
+    <div class="navbar">
+        <a href="/">
+            <button class="navButton"> Home </button>
+        </a>
+        <a href="/catalog">
+            <button class="navButton" style="background-color:#7d7d8c"> Catalog </button>
+        </a>
+        <a href="/orders">
+            <button class="navButton"> Orders </button>
+        </a>
+        <a href="/inventory">
+            <button class="navButton"> Inventory </button>
+        </a>
+        <a href="/budget">
+            <button class="navButton"> Budget </button>
+        </a>
+    </div>
 
 
 

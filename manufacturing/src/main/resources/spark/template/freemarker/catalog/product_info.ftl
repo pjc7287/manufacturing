@@ -14,7 +14,23 @@
         <p class="headerLink" style="font-size:25px">Catalog</p>
     </a>
 </div>
-<hr>
+<div class="navbar">
+    <a href="/">
+        <button class="navButton"> Home </button>
+    </a>
+    <a href="/catalog" style="background-color:#7d7d8c">
+        <button class="navButton"> Catalog </button>
+    </a>
+    <a href="/orders">
+        <button class="navButton"> Orders </button>
+    </a>
+    <a href="/inventory">
+        <button class="navButton"> Inventory </button>
+    </a>
+    <a href="/budget">
+        <button class="navButton"> Budget </button>
+    </a>
+</div>
 <section style="padding: 100px;display: flex;flex-direction: row;">
     <div>
         <p style="font-size:25px; color:#1abc9c; font-weight: bold">${title}:</p>

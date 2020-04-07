@@ -2,12 +2,14 @@ package routes;
 
 import assembly.AssemblyLine;
 import database.Database;
+import routes.budget.GetBudgetRoute;
 import routes.heartbeat.PostHeartbeatRoute;
 import routes.orders.GetNewOrderRoute;
 import routes.orders.GetOrdersRoute;
 import routes.catalog.*;
 import routes.orders.PostNewOrderRoute;
-import routes.warehouse.*;
+import routes.inventory.*;
+import routes.orders.PostPackRoute;
 import spark.TemplateEngine;
 
 import static spark.Spark.*;
@@ -33,7 +35,7 @@ public class WebServer {
         // Configuration to serve static files
         staticFileLocation("/public");
 
-        //HTML page reequests
+        //HOME ROUTE
         get("/", new GetHomeRoute(templateEngine));
 
         // CATALOG ROUTES:
@@ -48,22 +50,17 @@ public class WebServer {
         get("/orders", new GetOrdersRoute(templateEngine, db));
         get("/orders/new_order", new GetNewOrderRoute(templateEngine, db));
         post("/orders/new", new PostNewOrderRoute(db, assemblyLine));
+        post("/orders/pack", new PostPackRoute(db));
 
+        //INVENTORY ROUTES
+        get("/inventory", new GetInventoryRoute(templateEngine,db));
+        get("/inventory/new_pallet", new GetNewPalletRoute(templateEngine));
 
+        //BUDGET ROUTES
+        get("/budget", new GetBudgetRoute(templateEngine,db));
 
-
-        get("/warehouse", new GetWarehouseRoute(templateEngine));
-        get("/inventory", new GetPartsRoute(templateEngine, db));
-        get("/product", new GetProductRoute(templateEngine, db));
-        get("/pallet", new GetPalletRoute(templateEngine, db));
-        get("/container", new GetContainerRoute(templateEngine, db));
-
+        //HEARTBEAT ROUTE
         post("/heartbeat", new PostHeartbeatRoute(assemblyLine));
-
-        //Test requests
-        get("/hello", (req, res) -> "Hello World");
-
-
     }
 }
 

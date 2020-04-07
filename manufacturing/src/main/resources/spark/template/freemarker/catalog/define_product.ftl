@@ -57,7 +57,23 @@
         <p class="headerLink" style="font-size:25px">Catalog</p>
     </a>
 </div>
-<hr>
+<div class="navbar">
+    <a href="/">
+        <button class="navButton"> Home </button>
+    </a>
+    <a href="/catalog" >
+        <button class="navButton" style="background-color:#7d7d8c"> Catalog </button>
+    </a>
+    <a href="/orders">
+        <button class="navButton"> Orders </button>
+    </a>
+    <a href="/inventory">
+        <button class="navButton"> Inventory </button>
+    </a>
+    <a href="/budget">
+        <button class="navButton"> Budget </button>
+    </a>
+</div>
     <section style="display:flex; flex-direction:row">
         <div>
             <p style="font-size: 2.0em">Define New Product:</p><br><br>

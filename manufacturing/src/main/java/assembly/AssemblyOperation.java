@@ -51,7 +51,7 @@ public class AssemblyOperation implements Operation {
             return false;
         }
         else{
-            System.out.println("[AssembyLine]: Finished assembling " + name);
+            System.out.println("[AssemblyLine]: Finished assembling " + name);
             this.db.getWorkOrderTable().updateProgress(workorder_id,100);
             return true;
         }

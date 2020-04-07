@@ -13,7 +13,23 @@
         </a>
         <p style="font-size:25px">Work Orders</p>
     </div>
-    <hr>
+    <div class="navbar">
+        <a href="/">
+            <button class="navButton"> Home </button>
+        </a>
+        <a href="/catalog">
+            <button class="navButton"> Catalog </button>
+        </a>
+        <a href="/orders">
+            <button class="navButton" style="background-color:#7d7d8c"> Orders </button>
+        </a>
+        <a href="/inventory">
+            <button class="navButton"> Inventory </button>
+        </a>
+        <a href="/budget">
+            <button class="navButton"> Budget </button>
+        </a>
+    </div>
 
     <section style="display:flex; flex-direction:row">
         <div>
@@ -30,7 +46,6 @@
                     <th>Product Serial Number</th>
                     <th>Description</th>
                     <th></th>
-                    <th></th>
                 </tr>
                 <#list table as row>
                     <tr>
@@ -41,10 +56,10 @@
                         <td>${row[4]}</td>
                         <td>${row[5]}</td>
 
-                        <td>
+                        <td><#if row[2]="100.0">
                             <form action="/orders/pack" method="post">
-                                <#if row[2]="100.0"> <button class="pack" id="pack">Pack</button> </#if>
-                            </form>
+                                <button class="pack" name="workorder_id" value="${row[0]}"id="pack">Pack</button>
+                            </form></#if>
                         </td>
                     </tr>
                 </#list>
