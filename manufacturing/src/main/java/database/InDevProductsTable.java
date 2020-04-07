@@ -13,9 +13,9 @@ public class InDevProductsTable {
 
     public InDevProductsTable(Sql2o sql2o) { this.sql2o = sql2o; }
 
-    public InDevProduct getProduct(int id){
+    public InDevProduct getProduct(String id){
         String sql =
-                "SELECT * FROM indev_products WHERE serial_num =" + Integer.toString(id);
+                "SELECT * FROM indev_products WHERE serial_num = \"" + id + "\"";
         try(Connection con = sql2o.open()){
             List<InDevProduct> result = con.createQuery(sql).executeAndFetch(InDevProduct.class);
             con.close();
@@ -26,7 +26,7 @@ public class InDevProductsTable {
     public boolean addNewProduct(InDevProduct p){
         String sql =
                 "INSERT into indev_products VALUES (" +
-                        Integer.toString(p.getProduct_id())+", \"" + p.getSerial_num() +"\", \""+p.getWarehouse_loc()+"\")";
+                        "\""+p.getProduct_id()+"\", \"" + p.getSerial_num() +"\", \""+p.getWarehouse_loc()+"\")";
 
         try(Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
@@ -35,12 +35,14 @@ public class InDevProductsTable {
         }
     }
 
-    public boolean deleteWorkOrder(int id){
+
+    public boolean removeProduct(String id){
         String sql =
-                "DELETE FROM indev_products WHERE id=" + Integer.toString(id);
+                "DELETE FROM indev_products WHERE serial_num=\"" + id+"\"";
         try(Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
             return true;
         }
     }
+
 }

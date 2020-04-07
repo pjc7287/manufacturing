@@ -56,6 +56,20 @@ a:link, a:visited {
 	border-radius: 100%;
 	color:white;
 }
+.del{
+	background-color: #fc3030;
+	text-align: center;
+	display: inline-block;
+	border-radius: 100%;
+	color:white;
+}
+.pack{
+	background-color: #6669ff;
+	text-align: center;
+	display: inline-block;
+	border-radius: 3px;
+	color:white;
+}
 #options{
     padding: 100px;
     display: flex;

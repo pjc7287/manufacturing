@@ -18,7 +18,7 @@
     <section style="display:flex; flex-direction:row">
         <div>
             <p style="font-size: 2.0em">Make New Order:</p><br><br>
-            <form action="/orders/new/assemble" method ="post" id="newOrderForm">
+            <form action="/orders/new" method ="post" id="newOrderForm">
 
                 <select id="command" name="command" form="newOrderForm" required="required">
                     <option value="" selected>Type of Order</option>
@@ -27,7 +27,6 @@
                     <!--<option value="disassemble">Disassemble</option> -->
                 </select>
                 <br><br>
-                <input type="number" min="1" step="any" id="quantity" name="quantity" required="required" placeholder="Quantity"/><br><br>
                 <input type="text" id="warehouse_loc" name="warehouse_loc" required="required" placeholder="Warehouse Location"><br><br>
                 <select id="product_id" name="product_id" form="newOrderForm" required="required">
                         <option value="" selected>Product</option>

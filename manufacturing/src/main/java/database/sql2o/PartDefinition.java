@@ -5,24 +5,24 @@ import java.util.List;
 
 public class PartDefinition {
 
-    private int id;
+    private String id;
     private String title;
     private float cost;
     private String info;
 
 
-    public PartDefinition(int id, String title, float cost, String info){
+    public PartDefinition(String id, String title, float cost, String info){
         this.id = id;
         this.title = title;
         this.cost = cost;
         this.info = info;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,7 +52,7 @@ public class PartDefinition {
 
     public List toList(){
         ArrayList<String> list = new ArrayList<>();
-        list.add(Integer.toString(id));
+        list.add(id);
         list.add(title);
         list.add(Float.toString(cost));
         list.add(info);

@@ -14,7 +14,7 @@ public class WorkOrderTable {
 
     public List<WorkOrder> getAllWorkOrders(){
         String sql =
-                "SELECT id, command, quantity, warehouse_loc, product_id, info " +
+                "SELECT id, command, progress, warehouse_loc, product_id, info " +
                         "FROM workorder";
         try(Connection con = sql2o.open()){
             List<WorkOrder> result = con.createQuery(sql).executeAndFetch(WorkOrder.class);
@@ -25,8 +25,8 @@ public class WorkOrderTable {
 
     public boolean addWorkOrder(WorkOrder wo){
         String sql =
-                "INSERT into workorder (command, quantity, warehouse_loc, product_id, info) VALUES (" +
-        "\""+wo.getCommand()+"\", "+Integer.toString(wo.getQuantity())+", \""+wo.getWarehouse_loc()+"\", "+Integer.toString(wo.getProduct_id())+", \""+wo.getInfo()+"\")";
+                "INSERT into workorder  VALUES (" +
+        "\""+wo.getId()+"\", \""+wo.getCommand()+"\", "+Float.toString(wo.getProgress())+", \""+wo.getWarehouse_loc()+"\", \""+wo.getProduct_id()+"\", \""+wo.getInfo()+"\")";
 
         try(Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
@@ -35,12 +35,22 @@ public class WorkOrderTable {
         }
     }
 
-    public boolean deleteWorkOrder(int id){
+    public boolean deleteWorkOrder(String id){
         String sql =
-                "DELETE FROM workorder WHERE id=" + Integer.toString(id);
+                "DELETE FROM workorder WHERE id=\"" + id + "\"";
         try(Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
             return true;
         }
     }
+
+    public boolean updateProgress(String id, float progress){
+        String sql =
+                "UPDATE workorder SET progress = "+ Float.toString(progress) + " WHERE id = \"" + id + "\"";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql).executeUpdate();
+            return true;
+        }
+    }
+
 }

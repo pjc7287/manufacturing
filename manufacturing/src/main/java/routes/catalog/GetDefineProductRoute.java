@@ -25,7 +25,7 @@ public class GetDefineProductRoute implements Route {
     public Object handle(Request request, Response response){
 
         //Get the list of parts and put their ids and names into a hash for the page to render
-        HashMap<Integer, String> partsInfo = new HashMap<>();
+        HashMap<String, String> partsInfo = new HashMap<>();
 
         List<PartDefinition> parts = db.getPartDefinitionsTable().getAllParts();
 

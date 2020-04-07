@@ -2,6 +2,7 @@ package routes;
 
 import assembly.AssemblyLine;
 import database.Database;
+import routes.heartbeat.PostHeartbeatRoute;
 import routes.orders.GetNewOrderRoute;
 import routes.orders.GetOrdersRoute;
 import routes.catalog.*;
@@ -57,10 +58,11 @@ public class WebServer {
         get("/pallet", new GetPalletRoute(templateEngine, db));
         get("/container", new GetContainerRoute(templateEngine, db));
 
-
+        post("/heartbeat", new PostHeartbeatRoute(assemblyLine));
 
         //Test requests
         get("/hello", (req, res) -> "Hello World");
+
 
     }
 }

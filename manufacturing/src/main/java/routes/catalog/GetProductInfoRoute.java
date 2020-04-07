@@ -29,7 +29,7 @@ public class GetProductInfoRoute implements Route {
 
         Map<String, Object> attributeMap = new HashMap<>();
 
-        int id = Integer.parseInt(request.params(":id"));
+        String id = request.params(":id");
 
         ProductDefinition product = db.getProductDefinitionsTable().getProduct(id);
 

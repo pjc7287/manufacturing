@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Component {
 
-    private int id;
+    private String id;
     private String title;
     private float cost;
     private String info;
     private int quantity;
 
-    public Component(int id, String title, float cost, String info, int quantity) {
+    public Component(String id, String title, float cost, String info, int quantity) {
         this.id = id;
         this.title = title;
         this.cost = cost;
@@ -19,11 +19,11 @@ public class Component {
         this.quantity = quantity;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -61,7 +61,7 @@ public class Component {
 
     public List<String> toList(){
         ArrayList<String> tokens = new ArrayList<>();
-        tokens.add(Integer.toString(id));
+        tokens.add(id);
         tokens.add(title);
         tokens.add(Float.toString(cost));
         tokens.add(info);

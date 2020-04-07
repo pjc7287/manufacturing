@@ -12,12 +12,12 @@ public class Application {
 
         final TemplateEngine templateEngine = new FreeMarkerEngine();
         final Database db = new Database();
-        final AssemblyLine assemblyLine = new AssemblyLine();
+        final AssemblyLine assemblyLine = new AssemblyLine(db);
 
         Spark.exception(Exception.class, (exception, request, response) -> {
             exception.printStackTrace();
         });
 
-        WebServer server = new WebServer(templateEngine, db, assemblyLine);
+        new WebServer(templateEngine, db, assemblyLine);
     }
 }

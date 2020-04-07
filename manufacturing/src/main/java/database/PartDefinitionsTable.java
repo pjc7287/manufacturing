@@ -54,14 +54,14 @@ public class PartDefinitionsTable {
 
     /**
      * Adds a part to the database, given a PartDefinition object representing a part
-     * @param partDefinition - PartDefinition object representing the product to be added
+     * @param p - PartDefinition object representing the product to be added
      * @return true/false depending if the product was added
      */
-    public boolean addPart(PartDefinition partDefinition){
+    public boolean addPart(PartDefinition p){
         //
         String sql =
-                "INSERT into part_definitions (title, cost, info) VALUES (" +
-                         "\"" + partDefinition.getTitle() +"\", " + Float.toString(partDefinition.getCost()) +", \"" + partDefinition.getInfo()+"\" )";
+                "INSERT into part_definitions  VALUES (" +
+                         "\"" + p.getId()+"\", \"" + p.getTitle() +"\", " + Float.toString(p.getCost()) +", \"" + p.getInfo()+"\" )";
         try(Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
             System.out.println("Added part definition");
@@ -76,10 +76,10 @@ public class PartDefinitionsTable {
      * @param id (id of part)
      * @return true/false depending if the part was deleted
      */
-    public boolean deletePart(int id){
+    public boolean deletePart(String id){
         //
         String sql =
-                "DELETE FROM part_definition WHERE id=" + Integer.toString(id);
+                "DELETE FROM part_definition WHERE id=\"" + id + "\"";
         try(Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
             return true;

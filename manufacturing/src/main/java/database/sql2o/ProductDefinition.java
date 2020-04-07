@@ -5,14 +5,14 @@ import java.util.List;
 
 public class ProductDefinition {
 
-    private int id;
+    private String id;
     private String title;
     private float cost;
     private String category;
     private String info;
 
 
-    public ProductDefinition(int id, String title, float cost, String category, String info){
+    public ProductDefinition(String id, String title, float cost, String category, String info){
         this.id = id;
         this.title = title;
         this.cost = cost;
@@ -20,11 +20,11 @@ public class ProductDefinition {
         this.info = info;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -62,7 +62,7 @@ public class ProductDefinition {
 
     public List toList(){
         ArrayList<String> list = new ArrayList<>();
-        list.add(Integer.toString(id));
+        list.add(id);
         list.add(title);
         list.add(Float.toString(cost));
         list.add(category);

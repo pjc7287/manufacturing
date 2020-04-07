@@ -25,7 +25,7 @@ public class GetNewOrderRoute implements Route {
     public Object handle(Request request, Response response){
 
         //Get the list of parts and put their ids and names into a hash for the page to render
-        HashMap<Integer, String> productsInfo = new HashMap<>();
+        HashMap<String, String> productsInfo = new HashMap<>();
 
         List<ProductDefinition> products = db.getProductDefinitionsTable().getAllProducts();
 
