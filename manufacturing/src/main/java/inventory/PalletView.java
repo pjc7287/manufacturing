@@ -22,7 +22,7 @@ public class PalletView {
 
     public void addBox(BoxView box){
         boxes.add(box);
-        this.numberOfItems+=box.getnumberOfItems();
+        this.numberOfItems+=box.getNumberOfItems();
     }
 
     public List<BoxView> getBoxes(){

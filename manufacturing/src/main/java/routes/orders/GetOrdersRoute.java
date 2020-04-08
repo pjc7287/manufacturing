@@ -1,5 +1,6 @@
 package routes.orders;
 
+import assembly.AssemblyMessageBox;
 import database.Database;
 import database.sql2o.WorkOrder;
 import spark.*;
@@ -36,7 +37,7 @@ public class GetOrdersRoute implements Route {
         }
 
         attributeMap.put("table", table);
-
+        attributeMap.put("assemblyMessage", AssemblyMessageBox.message);
 
         return templateEngine.render(new ModelAndView(attributeMap , "orders/orders.ftl"));
     }

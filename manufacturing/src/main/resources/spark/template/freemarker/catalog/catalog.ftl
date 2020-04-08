@@ -52,9 +52,9 @@
                         <td>${row[2]}</td>
                         <td>${row[3]}</td>
                         <td>${row[4]}</td>
-                        <td  style="border: 1px solid black;">
-                            <form action=# method="post">
-                                <button class="del" name="delete_id" value="${row[0]}">Delete</button>
+                        <td>
+                            <form action=/catalog/delete/product method="post">
+                                <button class="del" name="product_id" value="${row[0]}">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -88,8 +88,8 @@
                     <td>${row[3]}</td>
                     <#if permissions = "MANAGER">
                     <td>
-                        <form action=/catalog/delete/part/${row[0]} method="post">
-                            <button class="del" name="delete_id" value="${row[0]}">Delete</button>
+                        <form action=/catalog/delete/part method="post">
+                            <button class="del" name="part_id" value="${row[0]}">Delete</button>
                         </form>
                     </td>
                     </#if>

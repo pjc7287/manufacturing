@@ -12,7 +12,7 @@ public class BoxView {
         this.numberOfItems = numberOfItems;
     }
 
-    public int getnumberOfItems() {
+    public int getNumberOfItems() {
         return this.numberOfItems;
     }
 

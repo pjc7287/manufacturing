@@ -1,5 +1,6 @@
 package database;
 
+import database.sql2o.PrettyPrintProduct;
 import database.sql2o.Product;
 import org.sql2o.Connection;
 
@@ -20,11 +21,14 @@ public class ProductInventoryTable {
         return connection.createQuery(sql).executeAndFetch(Product.class);
     }
 
-    public List<Product> getContainersProducts(String container_id){
+    public List<PrettyPrintProduct> getContainersProducts(String container_id){
         String sql =
-                "SELECT * FROM product_inventory where container_id = \"" + container_id + "\"";
+                "SELECT d.title, p.product_id, p.serial_num FROM " +
+                        "product_inventory p INNER JOIN product_definitions d "+
+                        "on p.product_id = d.id "+
+                        "where container_id = \"" + container_id + "\"";
 
-        return connection.createQuery(sql).executeAndFetch(Product.class);
+        return connection.createQuery(sql).executeAndFetch(PrettyPrintProduct.class);
 
     }
 

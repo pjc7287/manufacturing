@@ -46,8 +46,10 @@
                     <#list pallet.getBoxes() as box>
                     <div>
                         <label for="${box.getId()}">${box.getType()}</label>
-                        <div class="box" id="${box.getId()}">
+                        <div class="box" <#if box.getNumberOfItems() gt 0>style="background-color:yellow;"</#if> id="${box.getId()}">
+                            <a href="/inventory/box/${box.getId()}">
                             <p>Box ID: ${box.getId()}</p>
+                            </a>
                         </div>
                     </div>
                     </#list>

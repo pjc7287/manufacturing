@@ -70,5 +70,10 @@ public class ContainInventoryTable {
         }
     }
 
+    public Container getContainer(String container_id){
+        String sql = "SELECT * FROM container_inventory where serial_num=\""+container_id+"\"";
+        return connection.createQuery(sql).executeAndFetch(Container.class).get(0);
+    }
+
 }
 

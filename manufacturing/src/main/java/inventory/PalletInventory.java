@@ -3,6 +3,7 @@ package inventory;
 import database.Database;
 import database.sql2o.Container;
 import database.sql2o.Pallet;
+import database.sql2o.PrettyPrintProduct;
 import database.sql2o.Product;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class PalletInventory {
                 String type = "Empty";
                 String id = c.getSerial_num();
                 int numberOfItems = 0;
-                List<Product> products = db.getProductInventoryTable().getContainersProducts(id);
+                List<PrettyPrintProduct> products = db.getProductInventoryTable().getContainersProducts(id);
                 if(products.size()>0){
                     palletView.setProduct_id(products.get(0).getProduct_id());
                     numberOfItems = products.size();

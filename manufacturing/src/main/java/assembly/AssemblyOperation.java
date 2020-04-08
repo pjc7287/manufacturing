@@ -44,17 +44,17 @@ public class AssemblyOperation implements Operation {
 
     public boolean cycle(){
         if(currentStep==0){
-            System.out.println("[AssemblyLine]: Started assembling " + name);
+            AssemblyMessageBox.message = "Started assembling " + name;
         }
         if(currentStep<totalParts){
-            System.out.println("[AssemblyLine@"+name+"]: Adding a " + partNames.get(currentStep));
+            AssemblyMessageBox.message ="["+name+"]: Adding a " + partNames.get(currentStep);
             if(db.getPartInventoryTable().consumePart(partIds.get(currentStep))) {
                 float progress = 100 * ((float) currentStep / (float) totalParts);
                 this.db.getWorkOrderTable().updateProgress(workorder_id, progress);
                 currentStep++;
             }
             else{
-                System.out.println("[AssemblyLine@"+name+"+]: Error! Requesting more "+ partNames.get(currentStep));
+                AssemblyMessageBox.message = "["+name+"]: Error! Requesting more "+ partNames.get(currentStep);
                 //Stubbed out. This is where we would get more parts from Inventory team
                 //
                 //
@@ -64,7 +64,7 @@ public class AssemblyOperation implements Operation {
             return false;
         }
         else{
-            System.out.println("[AssemblyLine]: Finished assembling " + name);
+            AssemblyMessageBox.message ="[AssemblyLine]: Finished assembling " + name;
             this.db.getWorkOrderTable().updateProgress(workorder_id,100);
             return true;
         }

@@ -70,7 +70,7 @@ public class PartDefinitionsTable {
     public boolean deletePart(String id){
         //
         String sql =
-                "DELETE FROM part_definition WHERE id=\"" + id + "\"";
+                "DELETE FROM part_definitions WHERE id=\"" + id + "\"";
         connection.createQuery(sql).executeUpdate();
         return true;
     }

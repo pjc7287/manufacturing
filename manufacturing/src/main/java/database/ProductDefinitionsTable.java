@@ -96,8 +96,8 @@ public class ProductDefinitionsTable {
                 "DELETE FROM product_definitions WHERE id=\"" + id+"\"";
         String deleteComponents =
                 "DELETE FROM product_components WHERE product_id=\"" + id+"\"";
-        connection.createQuery(deleteProduct).executeUpdate();
         connection.createQuery(deleteComponents).executeUpdate();
+        connection.createQuery(deleteProduct).executeUpdate();
         return true;
     }
 

@@ -65,6 +65,8 @@
                 </#list>
                 </tbody>
             </table>
+            <p>Assembly Line Message: </P>
+            <P>${assemblyMessage}</P>
         </div>
     </section>
 

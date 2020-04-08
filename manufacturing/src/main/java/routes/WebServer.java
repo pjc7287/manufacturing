@@ -50,6 +50,9 @@ public class WebServer {
         get("/catalog/info/:id", new GetProductInfoRoute(templateEngine,db));
         post("/catalog/new/part", new PostNewPartRoute(db));
         post("/catalog/new/product", new PostNewProductRoute(db));
+        post("/catalog/delete/part", new PostDeletePartRoute(db));
+        post("/catalog/delete/product", new PostDeleteProductRoute(db));
+
 
         //ORDER ROUTES
         get("/orders", new GetOrdersRoute(templateEngine, db));
@@ -65,6 +68,7 @@ public class WebServer {
         post("/inventory/submit_part", new PostSubmitPartRoute(db));
         post("/inventory/ship_pallet", new PostShipPalletRoute(db));
         get("/inventory/part_inventory", new GetPartInventoryRoute(templateEngine,db));
+        get("/inventory/box/:id", new GetBoxInfoRoute(templateEngine,db));
 
 
         //BUDGET ROUTES

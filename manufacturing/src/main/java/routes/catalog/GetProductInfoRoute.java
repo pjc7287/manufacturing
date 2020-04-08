@@ -25,8 +25,6 @@ public class GetProductInfoRoute implements Route {
 
     public Object handle(Request request, Response response){
 
-        //TODO: Fix this, as well as product_info.ftl. Not updated post-refactoring
-
         Map<String, Object> attributeMap = new HashMap<>();
 
         String id = request.params(":id");
