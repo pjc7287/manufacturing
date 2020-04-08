@@ -6,40 +6,29 @@
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-<div class="header">
-	<h1>KennUware</h1>
-	<p>Manufacturing Portal</p>
+<div class="smallheader">
+	<a href="/" style="color:white">
+		<h1>KennUware</h1>
+	</a>
+	<p style="font-size:25px">Welcome, ${userName}</p>
 </div>
-<hr>
-<section id="options">
-	<div>
-		<a  href="./recipes" style="color:black">
-			<h2> Recipes </h2></a>
-		<ul>
-			<li>View all recipes</li>
-			<li>Add a recipe</li>
-			<li>Delete a recipe</li>
-		</ul>
-	</div>
-	<div>
-		<a  href="./orders" style="color:black">
-			<h2> Orders </h2></a>
-		<ul>
-			<li>View all orders</li>
-			<li>Add an order</li>
-			<li>Delete an order</li>
-		</ul>
-	</div>
-	<div>
-		<a  href="./warehouse" style="color:black">
-			<h2> Warehouse </h2></a>
-		<ul>
-			<li>View warehouse inventory</li>
-			<li>View manufacturing budget</li>
-			<li>View assembly line</li>
+<div class="navbar">
+	<a href="/">
+		<button class="navButton" style="background-color:#7d7d8c"> Home </button>
+	</a>
+	<a href="/catalog">
+		<button class="navButton"> Catalog </button>
+	</a>
+	<a href="/orders">
+		<button class="navButton"> Orders </button>
+	</a>
+	<a href="/inventory">
+		<button class="navButton"  > Inventory </button>
+	</a>
+</div>
 
-		</ul>
-	</div>
+<section style="display:flex; flex-direction:row">
 </section>
+
 </body>
 </html>

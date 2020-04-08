@@ -94,6 +94,7 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        
 
         <!-- START: Unit testing libraries -->
         <dependency>
@@ -123,6 +124,8 @@
             <scope>test</scope>
         </dependency>
         <!-- END: Unit testing libraries -->
+
+
 
     </dependencies>
 
@@ -280,7 +283,7 @@
                     <execution>
                         <id>jacoco-initialize</id>
                         <configuration>
-                            <!-- throw away the old data with each test run -->
+                            <!-- throw away the old database with each test run -->
                             <append>false</append>
                         </configuration>
                         <goals>
