@@ -3,7 +3,6 @@ package inventory;
 import database.Database;
 import database.sql2o.Container;
 import database.sql2o.Pallet;
-import database.sql2o.Part;
 import database.sql2o.Product;
 
 import java.util.ArrayList;
@@ -30,10 +29,24 @@ public class PalletInventory {
         return true;
     }
 
+    public synchronized void packProduct(Product product){
+        //If a box going to the same warehouse w/ this product in it exists, put it in there.
+        Container c = db.getContainerInventoryTable().findMatchingContainer(product);
+        if(c == null){
+            //If we didn't find a good box, buy a new pallet.
+            purchasePallet(4,product.getWarehouse_loc());
+            c = db.getContainerInventoryTable().findMatchingContainer(product);
+        }
+        product.setContainer_id(c.getSerial_num());
+        db.getProductInventoryTable().addProduct(product);
+    }
+
+
     public void deployPallet(String pallet_id){
         //TODO: Remove pallet, its boxes, and its parts/products from inventory
         //This will eventually send a call to th  Inventory silo
     }
+
 
     public List<PalletView> getPalletViews(){
         List<PalletView> palletViews = new ArrayList<>();
@@ -48,15 +61,9 @@ public class PalletInventory {
                 int numberOfItems = 0;
                 List<Product> products = db.getProductInventoryTable().getContainersProducts(id);
                 if(products.size()>0){
+                    palletView.setProduct_id(products.get(0).getProduct_id());
                     numberOfItems = products.size();
                     type = "Products";
-                }
-                else{
-                    List<Part> parts = db.getPartInventoryTable().getContainersParts(id);
-                    if(parts.size()>0){
-                        numberOfItems = parts.size();
-                        type = "Parts";
-                    }
                 }
                 BoxView box = new BoxView(id,type,numberOfItems);
                 palletView.addBox(box);

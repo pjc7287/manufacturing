@@ -11,7 +11,7 @@
         <h1>KennUware</h1>
     </a>
     <a href="/catalog"  style="color:white">
-    <p style="font-size:25px" class="headerLink">Catalog</p>
+    <p style="font-size:25px" class="headerLink">Inventory</p>
     </a>
 </div>
 <div class="navbar">
@@ -19,7 +19,7 @@
         <button class="navButton"> Home </button>
     </a>
     <a href="/catalog">
-        <button class="navButton"> Catalog </button>
+        <button class="navButton" > Catalog </button>
     </a>
     <a href="/orders">
         <button class="navButton"> Orders </button>
@@ -30,13 +30,18 @@
 </div>
     <section style="display:flex; flex-direction:row">
         <div>
-            <p style="font-size: 2.0em">Buy New Pallet:</p><br><br>
-            <form action="/inventory/buy_pallet" method ="post" id="newPalletForm">
+            <p style="font-size: 2.0em">Get New Part:</p><br><br>
+            <form action="/inventory/submit_part" method ="post" id="newPartForm">
                 <p>Part Information:</p><br>
-                <input type="text" id="warehouse_loc" name="warehouse_loc" required="required" placeholder="Outgoing Warehouse Location"><br><br>
-                <input type="number" min="1" max="4" step="any" id="boxquantity" name="boxquantity" required="required" placeholder="Number of Boxes"/><br><br>
-                <br><br>
-                <input type="submit" value="Purchase" class="fancyButton">
+                <select id="part_id" name="part_id" form="newPartForm" required="required">
+                    <option value="" selected>Select A Part To Request</option>
+                    <#list partsInfo as key, value>
+                    <option value="${key}">${value}</option>
+                </#list>
+                </select>
+                <br>
+                <br>
+                <input type="submit" value="Submit Part Request" class="fancyButton">
             </form>
             <hr>
             <br>

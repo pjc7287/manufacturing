@@ -27,5 +27,12 @@ public class ProductInventoryTable {
         return connection.createQuery(sql).executeAndFetch(Product.class);
 
     }
+
+    public void addProduct(Product p){
+        String sql =
+                "INSERT INTO product_inventory VALUES (" +
+                        "\"" + p.getProduct_id()+ "\", \"" + p.getSerial_num()+ "\", \"" + p.getWarehouse_loc()+ "\", \"" + p.getContainer_id() + "\")";
+        connection.createQuery(sql).executeUpdate();
+    }
 }
 

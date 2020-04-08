@@ -1,6 +1,7 @@
 package database;
 
 import database.sql2o.Part;
+import database.sql2o.PrettyPrintPart;
 import org.sql2o.Connection;
 
 import java.util.List;
@@ -25,13 +26,20 @@ public class PartsInventoryTable {
 
     }
 
-    public List<Part> getContainersParts(String container_id){
-        String sql =
-                "SELECT * FROM part_inventory where container_id = \"" + container_id + "\"";
-
-        return connection.createQuery(sql).executeAndFetch(Part.class);
+    public List<PrettyPrintPart> getAllPartsFormatted(){
+        String sql = "SELECT "+
+                "part_def.title, part_real.serial_num "+
+                "FROM "+
+                "part_definitions part_def INNER JOIN part_inventory part_real "+
+                "ON part_def.id = part_real.part_id ";
+        return connection.createQuery(sql).executeAndFetch(PrettyPrintPart.class);
     }
 
+    /**
+     * Returns true if part is deleted, returns false if part not found
+     * @param part_id
+     * @return
+     */
     public synchronized boolean consumePart(String part_id){
         String sql =
                 "SELECT * FROM part_inventory where part_id = \"" + part_id + "\"";
@@ -46,6 +54,13 @@ public class PartsInventoryTable {
         else{
             return false;
         }
+    }
+
+    public boolean addPart(Part part){
+        String sql =
+                "INSERT INTO part_inventory VALUES (\"" + part.getPart_id() + "\", \""+ part.getSerial_num() + "\")";
+        connection.createQuery(sql).executeUpdate();
+        return true;
     }
 
 }

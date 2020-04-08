@@ -25,9 +25,6 @@
         <a href="/inventory">
             <button class="navButton"> Inventory </button>
         </a>
-        <a href="/budget">
-            <button class="navButton"> Budget </button>
-        </a>
     </div>
 
 

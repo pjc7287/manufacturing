@@ -8,6 +8,7 @@ public class PalletView {
     private String id;
     private String location;
     private int numberOfItems;
+    private String product_id;
 
     private List<BoxView> boxes;
 
@@ -16,6 +17,7 @@ public class PalletView {
         this.location = location;
         this.numberOfItems=0;
         this.boxes = new ArrayList<>();
+        this.product_id = null;
     }
 
     public void addBox(BoxView box){
@@ -37,5 +39,9 @@ public class PalletView {
 
     public int getNumberOfItems(){
         return this.numberOfItems;
+    }
+
+    public void setProduct_id(String product_id){
+        this.product_id=product_id;
     }
 }

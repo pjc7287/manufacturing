@@ -63,7 +63,7 @@ input[type=text]:focus, input[type=number]:focus, select:focus{
 }
 
 .fancyButton {
-  background-color: #1abc9c; /* Green */
+  background-color: #1abc9c;
   border: none;
   color: white;
   margin: 5px 5px;
@@ -75,7 +75,19 @@ input[type=text]:focus, input[type=number]:focus, select:focus{
   border-radius: 4px;
 }
 .fancyButton:hover{background-color:#21edc5;}
-
+.stubButton {
+  background-color: #f58d42;
+  border: none;
+  color: white;
+  margin: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.1em;
+  padding: 8px 8px;
+  border-radius: 4px;
+}
+.stubButton:hover{background-color:#ffae73;}
 td{
     border: 1px solid black;
     margin: 0px;

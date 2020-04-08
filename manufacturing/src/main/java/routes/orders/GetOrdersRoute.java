@@ -4,6 +4,8 @@ import database.Database;
 import database.sql2o.WorkOrder;
 import spark.*;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,7 @@ public class GetOrdersRoute implements Route {
         }
 
         attributeMap.put("table", table);
+
 
         return templateEngine.render(new ModelAndView(attributeMap , "orders/orders.ftl"));
     }

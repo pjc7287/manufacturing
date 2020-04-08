@@ -25,14 +25,18 @@
         <a href="/inventory">
             <button class="navButton"  style="background-color:#7d7d8c"> Inventory </button>
         </a>
-        <a href="/budget">
-            <button class="navButton"> Budget </button>
-        </a>
     </div>
     <div style="display:flex;justify-content:center">
-    <a href="/inventory/new_pallet">
-        <button class="fancyButton">Buy Pallet</button>
-    </a>
+        <a href="/inventory/part_inventory">
+            <button class="fancyButton">View In Stock Parts</button>
+        </a>
+        <a href="/inventory/new_pallet">
+            <button class="fancyButton">Buy Pallet</button>
+        </a>
+        <a href="/inventory/new_part">
+            <button class="stubButton">STUB: Request Part</button>
+        </a>
+
     </div>
     <section class="palletDisplay">
 

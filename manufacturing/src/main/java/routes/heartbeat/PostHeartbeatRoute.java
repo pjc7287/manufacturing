@@ -21,6 +21,7 @@ public class PostHeartbeatRoute implements Route {
     public Object handle(Request request, Response response){
         response.status(200);
         response.body("Heartbeat Received");
+        response.redirect("/orders");
         assemblyLine.cycle();
         return "Heartbeat Received!";
     }

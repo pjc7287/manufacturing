@@ -11,6 +11,8 @@ import routes.catalog.*;
 import routes.orders.PostNewOrderRoute;
 import routes.inventory.*;
 import routes.orders.PostPackRoute;
+import spark.Request;
+import spark.Response;
 import spark.TemplateEngine;
 
 import static spark.Spark.*;
@@ -53,18 +55,23 @@ public class WebServer {
         get("/orders", new GetOrdersRoute(templateEngine, db));
         get("/orders/new_order", new GetNewOrderRoute(templateEngine, db));
         post("/orders/new", new PostNewOrderRoute(db, assemblyLine));
-        post("/orders/pack", new PostPackRoute(db));
+        post("/orders/pack", new PostPackRoute(palletInventory, db));
 
         //INVENTORY ROUTES
         get("/inventory", new GetInventoryRoute(templateEngine,palletInventory));
         get("/inventory/new_pallet", new GetNewPalletRoute(templateEngine));
         post("/inventory/buy_pallet", new PostBuyPalletRoute(palletInventory));
+        get("/inventory/new_part", new GetNewPartRoute(templateEngine, db));
+        post("/inventory/submit_part", new PostSubmitPartRoute(db));
+        get("/inventory/part_inventory", new GetPartInventoryRoute(templateEngine,db));
+
 
         //BUDGET ROUTES
         get("/budget", new GetBudgetRoute(templateEngine,db));
 
         //HEARTBEAT ROUTE
         post("/heartbeat", new PostHeartbeatRoute(assemblyLine));
+        get("/heartbeat", (Request r, Response re) ->  "heartbeat found");
     }
 }
 

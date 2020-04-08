@@ -3,22 +3,22 @@ package database.sql2o;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Part {
+public class PrettyPrintPart {
 
-    private String part_id;
+    private String title;
     private String serial_num;
 
-    public Part(String part_id, String serial_num) {
-        this.part_id = part_id;
+    public PrettyPrintPart(String title, String serial_num){
+        this.title = title;
         this.serial_num = serial_num;
     }
 
-    public String getPart_id() {
-        return part_id;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPart_id(String part_id) {
-        this.part_id = part_id;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSerial_num() {
@@ -29,11 +29,10 @@ public class Part {
         this.serial_num = serial_num;
     }
 
-    public List toList(){
-        ArrayList<String> list = new ArrayList<>();
-        list.add(part_id);
+    public List<String> toList(){
+        List<String> list = new ArrayList<>();
+        list.add(title);
         list.add(serial_num);
         return list;
     }
 }
-

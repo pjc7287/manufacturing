@@ -4,7 +4,9 @@ import assembly.AssemblyLine;
 import database.Database;
 import database.InDevProductsTable;
 import database.sql2o.InDevProduct;
+import database.sql2o.Product;
 import database.sql2o.WorkOrder;
+import inventory.PalletInventory;
 import spark.*;
 import java.util.UUID;
 
@@ -16,8 +18,10 @@ import java.util.HashMap;
 public class PostPackRoute implements Route {
 
     private Database db;
+    private PalletInventory palletInventory;
 
-    public PostPackRoute(Database db){
+    public PostPackRoute(PalletInventory palletInventory, Database db){
+        this.palletInventory = palletInventory;
         this.db = db;
     }
 
@@ -28,13 +32,17 @@ public class PostPackRoute implements Route {
         //Fetch workorder
         WorkOrder wo = db.getWorkOrderTable().getWorkOrder(id);
         InDevProduct prod = db.getInDevProductsTable().getProduct(wo.getProduct_id());
+
+        Product packedProd = new Product(prod.getProduct_id(),prod.getSerial_num(),prod.getWarehouse_loc(),"null");
+        palletInventory.packProduct(packedProd);
+
         //Delete workorder/product from tables
         db.getWorkOrderTable().deleteWorkOrder(wo.getId());
         db.getInDevProductsTable().removeProduct(prod.getSerial_num());
 
         //Put workorder into inventory
         response.type("GET");
-        response.redirect("/orders");
+        response.redirect("/inventory");
         return null;
 
     }
