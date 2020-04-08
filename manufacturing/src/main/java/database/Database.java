@@ -1,5 +1,6 @@
 package database;
 
+import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 public class Database {
@@ -13,34 +14,38 @@ public class Database {
 
     private ProductDefinitionsTable product_definitionsTable;
     private PartDefinitionsTable part_definitionsTable;
+    private ProductInventoryTable product_inventoryTable;
+    private PartsInventoryTable part_inventoryTable;
+    private PalletInventoryTable pallet_inventoryTable;
+    private ContainInventoryTable container_inventoryTable;
+    private WorkOrderTable workorderTable;
+    private InDevProductsTable indev_productsTable;
 
-    private ProductTable productTable;
-    private PartsTable partsTable;
-    private PalletTable palletsTable;
-    private ContainersTable containersTable;
-    private WorkOrderTable workOrderTable;
-    private InDevProductsTable inDevProductsTable;
+    private Connection connection;
 
 
     public Database(){
-        this.productTable = new ProductTable(sql2o);
-        this.product_definitionsTable = new ProductDefinitionsTable(sql2o);
-        this.part_definitionsTable = new PartDefinitionsTable(sql2o);
-        this.partsTable = new PartsTable(sql2o);
-        this.palletsTable = new PalletTable(sql2o);
-        this.containersTable = new ContainersTable(sql2o);
-        this.workOrderTable = new WorkOrderTable(sql2o);
-        this.inDevProductsTable = new InDevProductsTable(sql2o);
+
+        this.connection = sql2o.open();
+
+        this.product_inventoryTable = new ProductInventoryTable(connection);
+        this.product_definitionsTable = new ProductDefinitionsTable(connection);
+        this.part_definitionsTable = new PartDefinitionsTable(connection);
+        this.part_inventoryTable = new PartsInventoryTable(connection);
+        this.pallet_inventoryTable = new PalletInventoryTable(connection);
+        this.container_inventoryTable = new ContainInventoryTable(connection);
+        this.workorderTable = new WorkOrderTable(connection);
+        this.indev_productsTable = new InDevProductsTable(connection);
     }
 
     public WorkOrderTable getWorkOrderTable() {
-        return workOrderTable;
+        return workorderTable;
     }
 
-    public PartsTable getPartsTable() {  return partsTable; }
+    public PartsInventoryTable getPartInventoryTable() {  return part_inventoryTable; }
 
-    public ProductTable getProductTable() {
-        return productTable;
+    public ProductInventoryTable getProductInventoryTable() {
+        return product_inventoryTable;
     }
 
     public ProductDefinitionsTable getProductDefinitionsTable() {
@@ -51,38 +56,11 @@ public class Database {
         return part_definitionsTable;
     }
 
-    public PalletTable getPalletsTable() { return palletsTable; }
+    public PalletInventoryTable getPalletInventoryTable() { return pallet_inventoryTable; }
 
-    public ContainersTable getContainersTable() { return containersTable; }
+    public ContainInventoryTable getContainerInventoryTable() { return container_inventoryTable; }
 
-    public InDevProductsTable getInDevProductsTable(){return inDevProductsTable;}
+    public InDevProductsTable getInDevProductsTable(){return indev_productsTable;}
 
-
-
-
-    /**
-    public static void main(String[] args){
-        Database db = new Database();
-        List<Recipe> catalog = db.getRecipeTable().getAllRecipes();
-        for(Recipe r: catalog){
-            System.out.println("Recipe Name: "+ r.getTitle());
-        }
-        Recipe newRecipe = new Recipe(5,"Beans!", 500);
-        System.out.println("Adding new catalog: ");
-        System.out.println(db.getRecipeTable().addRecipe(newRecipe));
-
-        catalog = db.getRecipeTable().getAllRecipes();
-        for(Recipe r: catalog){
-            System.out.println("Recipe Name: "+ r.getTitle());
-        }
-
-        db.getRecipeTable().deleteRecipe(5);
-
-        catalog = db.getRecipeTable().getAllRecipes();
-        for(Recipe r: catalog){
-            System.out.println("Recipe Name: "+ r.getTitle());
-        }
-    }
-     */
 }
 

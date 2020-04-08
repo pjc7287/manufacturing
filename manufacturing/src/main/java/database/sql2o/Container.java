@@ -5,22 +5,22 @@ import java.util.List;
 
 public class Container {
 
-    private int id;
+    private String serial_num;
     private String warehouse_loc;
-    private int pallet_id;
+    private String pallet_id;
 
-    public Container(int id, String warehouse_loc, int pallet_id) {
-        this.id = id;
+    public Container(String serial_num, String warehouse_loc, String pallet_id) {
+        this.serial_num = serial_num;
         this.warehouse_loc = warehouse_loc;
         this.pallet_id = pallet_id;
     }
 
-    public int getId() {
-        return id;
+    public String getSerial_num() {
+        return serial_num;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSerial_num(String serial_num) {
+        this.serial_num = serial_num;
     }
 
     public String getWarehouse_loc() {
@@ -31,19 +31,19 @@ public class Container {
         this.warehouse_loc = warehouse_loc;
     }
 
-    public int getPallet_id() {
+    public String getPallet_id() {
         return pallet_id;
     }
 
-    public void setPallet_id(int pallet_id) {
+    public void setPallet_id(String pallet_id) {
         this.pallet_id = pallet_id;
     }
 
     public List toList(){
         ArrayList<String> list = new ArrayList<>();
-        list.add(Integer.toString(id));
+        list.add(serial_num);
         list.add(warehouse_loc);
-        list.add(Integer.toString(pallet_id));
+        list.add(pallet_id);
         return list;
     }
 }

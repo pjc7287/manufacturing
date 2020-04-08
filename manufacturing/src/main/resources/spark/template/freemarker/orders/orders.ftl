@@ -5,6 +5,14 @@
     <meta http-equiv="refresh" content="3"> <!-- Refresh every 15 minutes -->
     <title>KennUware</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script type="text/javascript">
+        function sendHeartbeat(){
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://192.168.1.2:4567/heartbeat", true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send();
+        }
+    </script>
 </head>
 <body>
     <div class="smallheader">
@@ -36,6 +44,7 @@
             <a href="/orders/new_order">
                 <button class="fancyButton">Add Work Order</button>
             </a>
+            <button onclick="sendHeartbeat()" class="fancyButton">STUB: Simulate heartbeat tick</button>
             <table id="workorderlist">
                 <tbody>
                 <tr>

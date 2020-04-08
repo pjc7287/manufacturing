@@ -2,6 +2,7 @@ package routes;
 
 import assembly.AssemblyLine;
 import database.Database;
+import inventory.PalletInventory;
 import routes.budget.GetBudgetRoute;
 import routes.heartbeat.PostHeartbeatRoute;
 import routes.orders.GetNewOrderRoute;
@@ -19,11 +20,13 @@ public class WebServer {
     private TemplateEngine templateEngine;
     private Database db;
     private AssemblyLine assemblyLine;
+    private PalletInventory palletInventory;
 
-    public WebServer(TemplateEngine templateEngine, Database db, AssemblyLine assemblyLine){
+    public WebServer(TemplateEngine templateEngine, Database db, AssemblyLine assemblyLine, PalletInventory palletInventory){
         this.templateEngine = templateEngine;
         this.db = db;
         this.assemblyLine = assemblyLine;
+        this.palletInventory = palletInventory;
         this.initializeRoutes();
     }
 
@@ -53,8 +56,9 @@ public class WebServer {
         post("/orders/pack", new PostPackRoute(db));
 
         //INVENTORY ROUTES
-        get("/inventory", new GetInventoryRoute(templateEngine,db));
+        get("/inventory", new GetInventoryRoute(templateEngine,palletInventory));
         get("/inventory/new_pallet", new GetNewPalletRoute(templateEngine));
+        post("/inventory/buy_pallet", new PostBuyPalletRoute(palletInventory));
 
         //BUDGET ROUTES
         get("/budget", new GetBudgetRoute(templateEngine,db));

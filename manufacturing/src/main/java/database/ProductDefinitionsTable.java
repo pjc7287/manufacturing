@@ -3,7 +3,6 @@ package database;
 import database.sql2o.Component;
 import database.sql2o.ProductDefinition;
 import org.sql2o.Connection;
-import org.sql2o.Sql2o;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,11 +12,9 @@ import java.util.List;
 public class ProductDefinitionsTable {
 
 
-    private Sql2o sql2o;
+    private Connection connection;
 
-    public ProductDefinitionsTable(Sql2o sql2o){
-        this.sql2o = sql2o;
-    }
+    public ProductDefinitionsTable(Connection connection) { this.connection = connection; }
 
     /**
      * Gets all of the products from the database and populates a list with ProductDefinition objects
@@ -29,11 +26,8 @@ public class ProductDefinitionsTable {
                 "SELECT id, title, cost, category, info " +
                         "FROM product_definitions";
 
-        try(Connection con = sql2o.open()) {
-            List<ProductDefinition> result = con.createQuery(sql).executeAndFetch(ProductDefinition.class);
-            con.close();
-            return result;
-        }
+        List<ProductDefinition> result = connection.createQuery(sql).executeAndFetch(ProductDefinition.class);
+        return result;
     }
 
     /**
@@ -45,27 +39,22 @@ public class ProductDefinitionsTable {
         String sql =
                 "SELECT * FROM product_definitions WHERE id=\"" + id +"\"";
 
-        try(Connection con = sql2o.open()) {
-            List<ProductDefinition> result = con.createQuery(sql).executeAndFetch(ProductDefinition.class);
-            con.close();
-            return result.get(0);
-        }
+        List<ProductDefinition> result = connection.createQuery(sql).executeAndFetch(ProductDefinition.class);
+        return result.get(0);
     }
 
     public List<Component> getComponents(String product_id){
 
         String sql =
                 "SELECT "+
-                    "part.id, part.title, part.cost, part.info, component.quantity "+
+                        "part.id, part.title, part.cost, part.info, component.quantity "+
                         "FROM "+
                         "part_definitions part INNER JOIN product_components component "+
                         "ON part.id = component.part_id " +
                         "WHERE component.product_id =\"" + product_id +"\"";
-        try(Connection con = sql2o.open()) {
-            List<Component> result = con.createQuery(sql).executeAndFetch(Component.class);
-            con.close();
-            return result;
-        }
+        List<Component> result = connection.createQuery(sql).executeAndFetch(Component.class);
+        return result;
+
     }
 
 
@@ -82,19 +71,17 @@ public class ProductDefinitionsTable {
                         "\"" + p.getId() + "\", \"" + p.getTitle() +"\", " + Float.toString(p.getCost()) + ", \"" + p.getCategory() + "\", \"" + p.getInfo()+"\" )";
         System.out.println(productTransaction);
 
-        try(Connection con = sql2o.open()) {
-            //Inserts Product Definition
-            con.createQuery(productTransaction).executeUpdate();
-            //Fetch generated ID
-            String product_id = p.getId();
-            //Inserts Product Components
-            for(String part_id: componentInfo.keySet()){
-                String quantity = Integer.toString(componentInfo.get(part_id));
-                String componentTransaction = "INSERT into product_components VALUES (\"" + part_id +"\", " + quantity + ", \"" + product_id+"\")";
-                con.createQuery(componentTransaction).executeUpdate();
-            }
-            return true;
+        //Inserts Product Definition
+        connection.createQuery(productTransaction).executeUpdate();
+        //Fetch generated ID
+        String product_id = p.getId();
+        //Inserts Product Components
+        for(String part_id: componentInfo.keySet()){
+            String quantity = Integer.toString(componentInfo.get(part_id));
+            String componentTransaction = "INSERT into product_components VALUES (\"" + part_id +"\", " + quantity + ", \"" + product_id+"\")";
+            connection.createQuery(componentTransaction).executeUpdate();
         }
+        return true;
     }
 
     //TODO: Delete corresponding components from component table
@@ -109,11 +96,9 @@ public class ProductDefinitionsTable {
                 "DELETE FROM product_definitions WHERE id=\"" + id+"\"";
         String deleteComponents =
                 "DELETE FROM product_components WHERE product_id=\"" + id+"\"";
-        try(Connection con = sql2o.open()) {
-            con.createQuery(deleteProduct).executeUpdate();
-            con.createQuery(deleteComponents).executeUpdate();
-            return true;
-        }
+        connection.createQuery(deleteProduct).executeUpdate();
+        connection.createQuery(deleteComponents).executeUpdate();
+        return true;
     }
 
 }

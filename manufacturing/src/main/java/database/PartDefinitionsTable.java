@@ -2,7 +2,6 @@ package database;
 
 import database.sql2o.PartDefinition;
 import org.sql2o.Connection;
-import org.sql2o.Sql2o;
 
 import java.util.List;
 
@@ -12,11 +11,9 @@ import java.util.List;
 public class PartDefinitionsTable {
 
 
-    private Sql2o sql2o;
+    private Connection connection;
 
-    public PartDefinitionsTable(Sql2o sql2o){
-        this.sql2o = sql2o;
-    }
+    public PartDefinitionsTable(Connection connection) { this.connection = connection; }
 
     /**
      * Gets all of the parts from the database and populates a list with PartDefinition objects
@@ -28,11 +25,9 @@ public class PartDefinitionsTable {
                 "SELECT id, title, cost, info " +
                         "FROM part_definitions";
 
-        try(Connection con = sql2o.open()) {
-            List<PartDefinition> result = con.createQuery(sql).executeAndFetch(PartDefinition.class);
-            con.close();
-            return result;
-        }
+        List<PartDefinition> result = connection.createQuery(sql).executeAndFetch(PartDefinition.class);
+        connection.close();
+        return result;
     }
 
     /**
@@ -44,11 +39,9 @@ public class PartDefinitionsTable {
         String sql =
                 "SELECT * FROM part_definitions WHERE id=" + Integer.toString(id);
 
-        try(Connection con = sql2o.open()) {
-            List<PartDefinition> result = con.createQuery(sql).executeAndFetch(PartDefinition.class);
-            con.close();
-            return result.get(0);
-        }
+        List<PartDefinition> result = connection.createQuery(sql).executeAndFetch(PartDefinition.class);
+        connection.close();
+        return result.get(0);
     }
 
 
@@ -62,11 +55,9 @@ public class PartDefinitionsTable {
         String sql =
                 "INSERT into part_definitions  VALUES (" +
                          "\"" + p.getId()+"\", \"" + p.getTitle() +"\", " + Float.toString(p.getCost()) +", \"" + p.getInfo()+"\" )";
-        try(Connection con = sql2o.open()) {
-            con.createQuery(sql).executeUpdate();
-            System.out.println("Added part definition");
-            return true;
-        }
+        connection.createQuery(sql).executeUpdate();
+        return true;
+
     }
 
     //TODO: Delete corresponding ingredients from ingredient table
@@ -80,10 +71,8 @@ public class PartDefinitionsTable {
         //
         String sql =
                 "DELETE FROM part_definition WHERE id=\"" + id + "\"";
-        try(Connection con = sql2o.open()) {
-            con.createQuery(sql).executeUpdate();
-            return true;
-        }
+        connection.createQuery(sql).executeUpdate();
+        return true;
     }
 
 }

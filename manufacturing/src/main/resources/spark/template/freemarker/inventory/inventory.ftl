@@ -36,20 +36,26 @@
     </div>
     <section class="palletDisplay">
 
-        <#list palletHash as pallet_id, boxes>
-            <div>
+        <#list palletViews as pallet>
+            <div style="padding:14px">
                 <div class="pallet">
-                    <#list boxes as box_id>
+                    <#list pallet.getBoxes() as box>
                     <div>
-                        <label for="${box_id}">Empty</label>
-                        <div class="box" id="${box_id}">
-                            <p>Box ID: ${box_id}</p>
+                        <label for="${box.getId()}">${box.getType()}</label>
+                        <div class="box" id="${box.getId()}">
+                            <p>Box ID: ${box.getId()}</p>
                         </div>
                     </div>
                     </#list>
                 </div>
-                <p>Pallet ID: ${pallet_id}</p>
-                <p>Outgoing Warehouse: Rochester, NY</p>
+        <p><span style="font-weight:bold;">Pallet ID: </span>${pallet.getId()} </p>
+        <p><span style="font-weight:bold;">Outgoing Warehouse: </span>${pallet.getLocation()} </p>
+        <p><span style="font-weight:bold;">Total Items: </span>${pallet.getNumberOfItems()} </p>
+            <#if pallet.getNumberOfItems() gt 0>
+                <button class="ship">Ship Pallet</button>
+            <#else>
+                <button class="cantship" disabled>Ship Pallet</button>
+            </#if>
             </div>
         </#list>
     </section>

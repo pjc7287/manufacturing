@@ -5,35 +5,31 @@ import java.util.List;
 
 public class Part {
 
-    private int part_id;
-    private int serial_num;
+    private String part_id;
+    private String serial_num;
     private String warehouse_loc;
-    private int container_id;
-    private boolean defective;
-    private String desc;
+    private String container_id;
 
-    public Part(int part_id, int serial_num, String warehouse_loc, int container_id, boolean defective, String desc) {
+    public Part(String part_id, String serial_num, String warehouse_loc, String container_id) {
         this.part_id = part_id;
         this.serial_num = serial_num;
         this.warehouse_loc = warehouse_loc;
         this.container_id = container_id;
-        this.defective = defective;
-        this.desc = desc;
     }
 
-    public int getPart_id() {
+    public String getPart_id() {
         return part_id;
     }
 
-    public void setPart_id(int part_id) {
+    public void setPart_id(String part_id) {
         this.part_id = part_id;
     }
 
-    public int getSerial_num() {
+    public String getSerial_num() {
         return serial_num;
     }
 
-    public void setSerial_num(int serial_num) {
+    public void setSerial_num(String serial_num) {
         this.serial_num = serial_num;
     }
 
@@ -45,34 +41,21 @@ public class Part {
         this.warehouse_loc = warehouse_loc;
     }
 
-    public int getContainer_id() {
+    public String getContainer_id() {
         return container_id;
     }
 
-    public void setContainer_id(int container_id) {
+    public void setContainer_id(String container_id) {
         this.container_id = container_id;
     }
 
-    public boolean isDefective() {
-        return defective;
-    }
-
-    public void setDefective(boolean defective) {
-        this.defective = defective;
-    }
-
-    public String getDesc(){ return desc; }
-
-    public void setDesc(String desc) { this.desc = desc; }
 
     public List toList(){
         ArrayList<String> list = new ArrayList<>();
-        list.add(Integer.toString(part_id));
-        list.add(Integer.toString(serial_num));
+        list.add(part_id);
+        list.add(serial_num);
         list.add(warehouse_loc);
-        list.add(Integer.toString(container_id));
-        list.add(Boolean.toString(defective));
-        list.add(desc);
+        list.add(container_id);
         return list;
     }
 }

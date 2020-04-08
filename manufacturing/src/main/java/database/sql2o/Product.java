@@ -5,29 +5,24 @@ import java.util.List;
 
 public class Product {
 
-    private int prod_id;
+    private String product_id;
     private String serial_num;
     private String warehouse_loc;
-    private int container_id;
+    private String container_id;
 
-    private String type;
-    private String desc;
-
-    public Product(int prod_id, String serial_num, String warehouse_loc, int container_id, String type, String desc) {
-        this.prod_id = prod_id;
+    public Product(String product_id, String serial_num, String warehouse_loc, String container_id) {
+        this.product_id = product_id;
         this.serial_num = serial_num;
         this.warehouse_loc = warehouse_loc;
         this.container_id = container_id;
-        this.type = type;
-        this.desc = desc;
     }
 
-    public int getProd_id() {
-        return prod_id;
+    public String getProduct_id() {
+        return product_id;
     }
 
-    public void setProd_id(int prod_id) {
-        this.prod_id = prod_id;
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
     }
 
     public String getSerial_num() {
@@ -46,39 +41,22 @@ public class Product {
         this.warehouse_loc = warehouse_loc;
     }
 
-    public int getContainer_id() {
+    public String getContainer_id() {
         return container_id;
     }
 
-    public void setContainer_id(int container_id) {
+    public void setContainer_id(String container_id) {
         this.container_id = container_id;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public List toList(){
         ArrayList<String> list = new ArrayList<>();
-        list.add(Integer.toString(prod_id));
+        list.add(product_id);
         list.add(serial_num);
         list.add(warehouse_loc);
-        list.add(Integer.toString(container_id));
-        list.add(type);
-        list.add(desc);
+        list.add(container_id);
         return list;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 }
 
