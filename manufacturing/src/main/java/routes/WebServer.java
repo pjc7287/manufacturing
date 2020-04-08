@@ -63,6 +63,7 @@ public class WebServer {
         post("/inventory/buy_pallet", new PostBuyPalletRoute(palletInventory));
         get("/inventory/new_part", new GetNewPartRoute(templateEngine, db));
         post("/inventory/submit_part", new PostSubmitPartRoute(db));
+        post("/inventory/ship_pallet", new PostShipPalletRoute(db));
         get("/inventory/part_inventory", new GetPartInventoryRoute(templateEngine,db));
 
 

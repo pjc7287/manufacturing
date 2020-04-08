@@ -56,7 +56,9 @@
         <p><span style="font-weight:bold;">Outgoing Warehouse: </span>${pallet.getLocation()} </p>
         <p><span style="font-weight:bold;">Total Items: </span>${pallet.getNumberOfItems()} </p>
             <#if pallet.getNumberOfItems() gt 0>
-                <button class="ship">Ship Pallet</button>
+                <form action="/inventory/ship_pallet" method="post">
+                <button value="${pallet.getId()}" name="pallet_id" class="ship">Ship Pallet</button>
+                </form>
             <#else>
                 <button class="cantship" disabled>Ship Pallet</button>
             </#if>
