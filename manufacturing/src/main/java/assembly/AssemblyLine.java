@@ -69,7 +69,7 @@ public class AssemblyLine{
             };
         }
         else{
-            System.out.println("[AssemblyLine]: Waiting for orders...");
+            AssemblyMessageBox.message = " Waiting for orders...";
         }
     }
 
