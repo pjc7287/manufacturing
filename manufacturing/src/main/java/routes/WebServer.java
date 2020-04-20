@@ -1,16 +1,14 @@
 package routes;
 
 import assembly.AssemblyLine;
+import com.google.gson.Gson;
 import database.Database;
 import inventory.PalletInventory;
 import routes.budget.GetBudgetRoute;
 import routes.heartbeat.PostHeartbeatRoute;
-import routes.orders.GetNewOrderRoute;
-import routes.orders.GetOrdersRoute;
+import routes.orders.*;
 import routes.catalog.*;
-import routes.orders.PostNewOrderRoute;
 import routes.inventory.*;
-import routes.orders.PostPackRoute;
 import spark.Request;
 import spark.Response;
 import spark.TemplateEngine;
@@ -23,12 +21,14 @@ public class WebServer {
     private Database db;
     private AssemblyLine assemblyLine;
     private PalletInventory palletInventory;
+    private Gson gson;
 
-    public WebServer(TemplateEngine templateEngine, Database db, AssemblyLine assemblyLine, PalletInventory palletInventory){
+    public WebServer(TemplateEngine templateEngine, Database db, AssemblyLine assemblyLine, PalletInventory palletInventory, Gson gson){
         this.templateEngine = templateEngine;
         this.db = db;
         this.assemblyLine = assemblyLine;
         this.palletInventory = palletInventory;
+        this.gson = gson;
         this.initializeRoutes();
     }
 
@@ -59,6 +59,7 @@ public class WebServer {
         get("/orders/new_order", new GetNewOrderRoute(templateEngine, db));
         post("/orders/new", new PostNewOrderRoute(db, assemblyLine));
         post("/orders/pack", new PostPackRoute(palletInventory, db));
+        post("/orders/submit_order", new PostSubmitOrderRoute(db, assemblyLine, gson));
 
         //INVENTORY ROUTES
         get("/inventory", new GetInventoryRoute(templateEngine,palletInventory));

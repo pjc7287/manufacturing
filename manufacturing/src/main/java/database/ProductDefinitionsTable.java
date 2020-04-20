@@ -40,6 +40,9 @@ public class ProductDefinitionsTable {
                 "SELECT * FROM product_definitions WHERE id=\"" + id +"\"";
 
         List<ProductDefinition> result = connection.createQuery(sql).executeAndFetch(ProductDefinition.class);
+        if(result.size()==0){
+            return null;
+        }
         return result.get(0);
     }
 
