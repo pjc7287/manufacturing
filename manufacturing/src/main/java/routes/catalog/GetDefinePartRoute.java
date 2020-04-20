@@ -4,7 +4,6 @@ import spark.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
 /**
  * This class is responsible for handling a GET request to "/catalog/new". We will respond with a rendered HTML page
  */
