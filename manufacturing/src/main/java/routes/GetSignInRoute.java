@@ -26,6 +26,7 @@ public class GetSignInRoute implements Route {
     public Object handle(Request request, Response response){
 
         String token = request.queryParams("token");
+        System.out.println(token);
         Session userSession = request.session();
 
         HttpRequest new_request = HttpRequest.newBuilder()
@@ -36,6 +37,7 @@ public class GetSignInRoute implements Route {
                 .build();
         HttpResponse<String> new_response = null;
         try {
+            System.out.println(new_request.uri().toString());
             new_response = httpClient.send(new_request, HttpResponse.BodyHandlers.ofString());
         }
         catch(Exception e){
