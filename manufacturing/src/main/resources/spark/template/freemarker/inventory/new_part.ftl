@@ -31,7 +31,7 @@
     <section style="display:flex; flex-direction:row">
         <div>
             <p style="font-size: 2.0em">Get New Part:</p><br><br>
-            <form action="/inventory/submit_part" method ="post" id="newPartForm">
+            <form action="/inventory/save_part" method ="post" id="newPartForm">
                 <p>Part Information:</p><br>
                 <select id="part_id" name="part_id" form="newPartForm" required="required">
                     <option value="" selected>Select A Part To Request</option>

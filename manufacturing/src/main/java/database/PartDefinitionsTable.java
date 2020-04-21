@@ -34,14 +34,19 @@ public class PartDefinitionsTable {
      * Gets part definition based on id
      * @return PartDefinition part - the part definition with matching id
      */
-    public PartDefinition getPart(int id){
+    public PartDefinition getPart(String id){
         //
         String sql =
-                "SELECT * FROM part_definitions WHERE id=" + Integer.toString(id);
+                "SELECT * FROM part_definitions WHERE id=\"" + id+"\"";
 
         List<PartDefinition> result = connection.createQuery(sql).executeAndFetch(PartDefinition.class);
         connection.close();
-        return result.get(0);
+        if(result.size()==0){
+            return null;
+        }
+        else {
+            return result.get(0);
+        }
     }
 
 
