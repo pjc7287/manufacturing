@@ -55,7 +55,7 @@ public class WebServer {
         // form parameters
         Map<Object, Object> data = new HashMap<>();
         data.put("department", "manufacturing");
-        data.put("url", "http://192.168.1.2:4567/heartbeat");
+        data.put("url", "http://ec2-54-198-255-201.compute-1.amazonaws.com:4567/heartbeat");
 
         HttpRequest request = HttpRequest.newBuilder()
                 .POST(buildFormDataFromMap(data))
