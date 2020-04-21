@@ -23,32 +23,14 @@ public class GetSignInRoute implements Route {
         this.httpClient = httpClient;
     }
 
-    private static HttpRequest.BodyPublisher buildFormDataFromMap(Map<Object, Object> data) {
-        StringBuilder builder = new StringBuilder();
-        for (Map.Entry<Object, Object> entry : data.entrySet()) {
-            if (builder.length() > 0) {
-                builder.append("&");
-            }
-            builder.append(URLEncoder.encode(entry.getKey().toString(), StandardCharsets.UTF_8));
-            builder.append("=");
-            builder.append(URLEncoder.encode(entry.getValue().toString(), StandardCharsets.UTF_8));
-        }
-        System.out.println(builder.toString());
-        return HttpRequest.BodyPublishers.ofString(builder.toString());
-    }
-
-
     public Object handle(Request request, Response response){
 
         String token = request.queryParams("token");
         Session userSession = request.session();
 
-        Map<Object, Object> data = new HashMap<>();
-        data.put("token", token);
-
         HttpRequest new_request = HttpRequest.newBuilder()
-                .POST(buildFormDataFromMap(data))
-                .uri(URI.create("http://ec2-3-82-117-119.compute-1.amazonaws.com/api/Token"))
+                .GET()
+                .uri(URI.create("http://ec2-3-82-117-119.compute-1.amazonaws.com/api/Token?token?="+token))
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .build();
