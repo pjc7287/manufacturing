@@ -32,10 +32,12 @@
     <section style="padding: 100px;display: flex;flex-direction: row;justify-content:space-between">
         <section>
             <p style="font-size:50px">Products</p>
+            <#if permissions = "MANAGER">
             <a href="/catalog/new/define_product">
                 <button class="fancyButton">Define New Product</button>
             </a>
-            <table id="productlist">
+            </#if>
+        <table id="productlist">
                 <tbody>
                     <tr>
                         <th style="width:100px">Product ID</th>
@@ -53,9 +55,11 @@
                         <td>${row[3]}</td>
                         <td>${row[4]}</td>
                         <td>
+                            <#if permissions = "MANAGER">
                             <form action=/catalog/delete/product method="post">
                                 <button class="del" name="product_id" value="${row[0]}">Delete</button>
                             </form>
+                            </#if>
                         </td>
                     </tr>
                 </#list>
