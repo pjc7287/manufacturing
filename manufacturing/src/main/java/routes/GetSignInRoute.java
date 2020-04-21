@@ -31,7 +31,7 @@ public class GetSignInRoute implements Route {
 
         HttpRequest new_request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://ec2-3-82-117-119.compute-1.amazonaws.com/api/Token?token?="+token))
+                .uri(URI.create("http://ec2-3-82-117-119.compute-1.amazonaws.com/api/Token?token="+token))
                 .setHeader("User-Agent", "Java 11 HttpClient Bot") // add request header
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .build();
