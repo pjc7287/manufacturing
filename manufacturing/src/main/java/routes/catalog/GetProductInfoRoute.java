@@ -25,28 +25,35 @@ public class GetProductInfoRoute implements Route {
 
     public Object handle(Request request, Response response){
 
-        Map<String, Object> attributeMap = new HashMap<>();
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
+            Map<String, Object> attributeMap = new HashMap<>();
 
-        String id = request.params(":id");
+            String id = request.params(":id");
 
-        ProductDefinition product = db.getProductDefinitionsTable().getProduct(id);
+            ProductDefinition product = db.getProductDefinitionsTable().getProduct(id);
 
-        attributeMap.put("id",product.getId());
-        attributeMap.put("title",product.getTitle());
-        attributeMap.put("cost",product.getCost());
-        attributeMap.put("category",product.getCategory());
-        attributeMap.put("info",product.getInfo());
+            attributeMap.put("id",product.getId());
+            attributeMap.put("title",product.getTitle());
+            attributeMap.put("cost",product.getCost());
+            attributeMap.put("category",product.getCategory());
+            attributeMap.put("info",product.getInfo());
 
-        List<List<String>> table = new ArrayList<>();
+            List<List<String>> table = new ArrayList<>();
 
-        List<Component> components = db.getProductDefinitionsTable().getComponents(id);
-        for(Component c:components){
-            table.add(c.toList());
+            List<Component> components = db.getProductDefinitionsTable().getComponents(id);
+            for(Component c:components){
+                table.add(c.toList());
+            }
+            attributeMap.put("table", table);
+
+
+            return templateEngine.render(new ModelAndView(attributeMap , "catalog/product_info.ftl"));
         }
-        attributeMap.put("table", table);
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
+        }
 
-
-        return templateEngine.render(new ModelAndView(attributeMap , "catalog/product_info.ftl"));
     }
 
 }

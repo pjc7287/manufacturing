@@ -23,14 +23,21 @@ public class GetInventoryRoute implements Route {
 
     public Object handle(Request request, Response response){
 
-        Map<String, Object> attributeMap = new HashMap<>();
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
+            Map<String, Object> attributeMap = new HashMap<>();
 
-        Map<String, List<String>> palletHash = new HashMap<>();
+            Map<String, List<String>> palletHash = new HashMap<>();
 
-        List<PalletView> palletViews = palletInventory.getPalletViews();
-        attributeMap.put("palletViews", palletViews);
+            List<PalletView> palletViews = palletInventory.getPalletViews();
+            attributeMap.put("palletViews", palletViews);
+            attributeMap.put("permissions", userSession.attribute("permissions"));
 
-        return templateEngine.render(new ModelAndView(attributeMap , "inventory/inventory.ftl"));
+            return templateEngine.render(new ModelAndView(attributeMap , "inventory/inventory.ftl"));
+        }
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
+        }
     }
 }
 

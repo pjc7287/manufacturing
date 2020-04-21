@@ -32,7 +32,6 @@ public class GetHomeRoute implements Route {
         else{
             return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
         }
-
     }
 
 }

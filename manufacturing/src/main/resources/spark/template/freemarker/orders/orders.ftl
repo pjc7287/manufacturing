@@ -30,12 +30,14 @@
 
     <section style="display:flex; flex-direction:row">
         <div>
+            <#if permissions = "MANAGER">
             <a href="/orders/new_order">
                 <button class="fancyButton">Add Work Order</button>
             </a>
             <form action="/heartbeat" method="POST">
                 <button class="stubButton">STUB: Simulate heartbeat tick</button>
             </form>
+            </#if>
             <table id="workorderlist">
                 <tbody>
                 <tr>

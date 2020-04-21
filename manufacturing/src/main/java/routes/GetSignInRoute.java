@@ -48,10 +48,10 @@ public class GetSignInRoute implements Route {
         String json = new_response.body();
         HRResponse employeeInfo = gson.fromJson(json,HRResponse.class);
         if(employeeInfo.getRoleName().equals("CEO")){
-            userSession.attribute("permissions","CEO");
+            userSession.attribute("permissions","MANAGER");
         }
         else{
-            userSession.attribute("permissions","worker");
+            userSession.attribute("permissions","NONMANAGER");
         }
         userSession.attribute("departmentName",employeeInfo.getDepartmentName());
         userSession.attribute("firstName",employeeInfo.getEmployeeFirstName());

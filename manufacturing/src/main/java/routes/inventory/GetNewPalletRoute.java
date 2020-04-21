@@ -17,9 +17,14 @@ public class GetNewPalletRoute implements Route {
     }
 
     public Object handle(Request request, Response response){
-
-        Map<String, Object> attributeMap = new HashMap<>();
-        return templateEngine.render(new ModelAndView(attributeMap , "inventory/new_pallet.ftl"));
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
+            Map<String, Object> attributeMap = new HashMap<>();
+            return templateEngine.render(new ModelAndView(attributeMap , "inventory/new_pallet.ftl"));
+        }
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
+        }
     }
 
 }

@@ -16,9 +16,15 @@ public class GetDefinePartRoute implements Route {
     }
 
     public Object handle(Request request, Response response){
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
+            Map<String, Object> attributeMap = new HashMap<>();
+            return templateEngine.render(new ModelAndView(attributeMap , "catalog/define_part.ftl"));
+        }
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
+        }
 
-        Map<String, Object> attributeMap = new HashMap<>();
-        return templateEngine.render(new ModelAndView(attributeMap , "catalog/define_part.ftl"));
     }
 
 }

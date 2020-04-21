@@ -24,26 +24,32 @@ public class GetCatalogRoute implements Route {
     }
 
     public Object handle(Request request, Response response){
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
+            Map<String, Object> attributeMap = new HashMap<>();
 
-        Map<String, Object> attributeMap = new HashMap<>();
+            List<List<String>> product_table = new ArrayList<>();
+            List<List<String>> part_table = new ArrayList<>();
 
-        List<List<String>> product_table = new ArrayList<>();
-        List<List<String>> part_table = new ArrayList<>();
+            List<ProductDefinition> products = db.getProductDefinitionsTable().getAllProducts();
+            List<PartDefinition> parts = db.getPartDefinitionsTable().getAllParts();
+            for(ProductDefinition product:products){
+                product_table.add(product.toList());
+            }
+            for(PartDefinition part:parts){
+                part_table.add(part.toList());
+            }
 
-        List<ProductDefinition> products = db.getProductDefinitionsTable().getAllProducts();
-        List<PartDefinition> parts = db.getPartDefinitionsTable().getAllParts();
-        for(ProductDefinition product:products){
-            product_table.add(product.toList());
+            attributeMap.put("product_table", product_table);
+            attributeMap.put("part_table", part_table);
+            attributeMap.put("permissions", userSession.attribute("permissions"));
+
+            return templateEngine.render(new ModelAndView(attributeMap , "catalog/catalog.ftl"));
         }
-        for(PartDefinition part:parts){
-            part_table.add(part.toList());
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
         }
 
-        attributeMap.put("product_table", product_table);
-        attributeMap.put("part_table", part_table);
-        attributeMap.put("permissions", "MANAGER");
-
-        return templateEngine.render(new ModelAndView(attributeMap , "catalog/catalog.ftl"));
     }
 
 }

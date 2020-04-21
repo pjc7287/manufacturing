@@ -26,20 +26,26 @@ public class GetPartInventoryRoute implements Route {
     }
 
     public Object handle(Request request, Response response){
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
+            Map<String, Object> attributeMap = new HashMap<>();
 
-        Map<String, Object> attributeMap = new HashMap<>();
+            List<List<String>> part_table = new ArrayList<>();
 
-        List<List<String>> part_table = new ArrayList<>();
+            List<PrettyPrintPart> parts = db.getPartInventoryTable().getAllPartsFormatted();
 
-        List<PrettyPrintPart> parts = db.getPartInventoryTable().getAllPartsFormatted();
+            for(PrettyPrintPart part:parts){
+                part_table.add(part.toList());
+            }
 
-        for(PrettyPrintPart part:parts){
-            part_table.add(part.toList());
+            attributeMap.put("part_table", part_table);
+
+            return templateEngine.render(new ModelAndView(attributeMap , "inventory/part_inventory.ftl"));
+        }
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
         }
 
-        attributeMap.put("part_table", part_table);
-
-        return templateEngine.render(new ModelAndView(attributeMap , "inventory/part_inventory.ftl"));
     }
 
 }

@@ -26,20 +26,26 @@ public class GetOrdersRoute implements Route {
     }
 
     public Object handle(Request request, Response response){
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
+            Map<String, Object> attributeMap = new HashMap<>();
 
-        Map<String, Object> attributeMap = new HashMap<>();
+            List<List<String>> table = new ArrayList<>();
+            List<WorkOrder> orders = db.getWorkOrderTable().getAllWorkOrders();
 
-        List<List<String>> table = new ArrayList<>();
-        List<WorkOrder> orders = db.getWorkOrderTable().getAllWorkOrders();
+            for(WorkOrder w:orders){
+                table.add(w.toList());
+            }
 
-        for(WorkOrder w:orders){
-            table.add(w.toList());
+            attributeMap.put("table", table);
+            attributeMap.put("assemblyMessage", AssemblyMessageBox.message);
+            attributeMap.put("permissions", userSession.attribute("permissions"));
+
+            return templateEngine.render(new ModelAndView(attributeMap , "orders/orders.ftl"));
         }
-
-        attributeMap.put("table", table);
-        attributeMap.put("assemblyMessage", AssemblyMessageBox.message);
-
-        return templateEngine.render(new ModelAndView(attributeMap , "orders/orders.ftl"));
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
+        }
     }
 
 }

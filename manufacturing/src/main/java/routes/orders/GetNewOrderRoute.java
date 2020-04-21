@@ -23,21 +23,25 @@ public class GetNewOrderRoute implements Route {
     }
 
     public Object handle(Request request, Response response){
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
+            //Get the list of parts and put their ids and names into a hash for the page to render
+            HashMap<String, String> productsInfo = new HashMap<>();
 
-        //Get the list of parts and put their ids and names into a hash for the page to render
-        HashMap<String, String> productsInfo = new HashMap<>();
+            List<ProductDefinition> products = db.getProductDefinitionsTable().getAllProducts();
 
-        List<ProductDefinition> products = db.getProductDefinitionsTable().getAllProducts();
+            for(ProductDefinition product : products){
+                productsInfo.put(product.getId(), product.getTitle());
+            }
 
-        for(ProductDefinition product : products){
-            productsInfo.put(product.getId(), product.getTitle());
+            Map<String, Object> attributeMap = new HashMap<>();
+
+            attributeMap.put("productsInfo", productsInfo);
+
+            return templateEngine.render(new ModelAndView(attributeMap , "orders/new_order.ftl"));
         }
-
-        Map<String, Object> attributeMap = new HashMap<>();
-
-        attributeMap.put("productsInfo", productsInfo);
-
-        return templateEngine.render(new ModelAndView(attributeMap , "orders/new_order.ftl"));
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
+        }
     }
-
 }

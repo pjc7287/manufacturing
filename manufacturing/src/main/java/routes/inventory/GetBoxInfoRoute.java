@@ -24,26 +24,33 @@ public class GetBoxInfoRoute implements Route {
 
     public Object handle(Request request, Response response){
 
-        Map<String, Object> attributeMap = new HashMap<>();
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
+            Map<String, Object> attributeMap = new HashMap<>();
 
-        String id = request.params(":id");
+            String id = request.params(":id");
 
-        Container container = db.getContainerInventoryTable().getContainer(id);
+            Container container = db.getContainerInventoryTable().getContainer(id);
 
-        attributeMap.put("container_id",container.getSerial_num());
-        attributeMap.put("pallet_id",container.getPallet_id());
-        attributeMap.put("warehouse_loc",container.getWarehouse_loc());
+            attributeMap.put("container_id",container.getSerial_num());
+            attributeMap.put("pallet_id",container.getPallet_id());
+            attributeMap.put("warehouse_loc",container.getWarehouse_loc());
 
-        List<List<String>> table = new ArrayList<>();
+            List<List<String>> table = new ArrayList<>();
 
-        List<PrettyPrintProduct> products = db.getProductInventoryTable().getContainersProducts(id);
-        for(PrettyPrintProduct p:products){
-            table.add(p.toList());
+            List<PrettyPrintProduct> products = db.getProductInventoryTable().getContainersProducts(id);
+            for(PrettyPrintProduct p:products){
+                table.add(p.toList());
+            }
+            attributeMap.put("table", table);
+
+
+            return templateEngine.render(new ModelAndView(attributeMap , "inventory/box_info.ftl"));
         }
-        attributeMap.put("table", table);
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
+        }
 
-
-        return templateEngine.render(new ModelAndView(attributeMap , "inventory/box_info.ftl"));
     }
 
 }

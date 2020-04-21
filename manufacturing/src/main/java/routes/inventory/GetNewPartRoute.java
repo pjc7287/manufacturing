@@ -25,20 +25,25 @@ public class GetNewPartRoute implements Route {
     }
 
     public Object handle(Request request, Response response){
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
+            //Get the list of parts and put their ids and names into a hash for the page to render
+            HashMap<String, String> partsInfo = new HashMap<>();
 
-        //Get the list of parts and put their ids and names into a hash for the page to render
-        HashMap<String, String> partsInfo = new HashMap<>();
+            List<PartDefinition> parts = db.getPartDefinitionsTable().getAllParts();
+            for(PartDefinition part : parts){
+                partsInfo.put(part.getId(), part.getTitle());
+            }
 
-        List<PartDefinition> parts = db.getPartDefinitionsTable().getAllParts();
-        for(PartDefinition part : parts){
-            partsInfo.put(part.getId(), part.getTitle());
+            Map<String, Object> attributeMap = new HashMap<>();
+
+            attributeMap.put("partsInfo", partsInfo);
+
+            return templateEngine.render(new ModelAndView(attributeMap , "inventory/new_part.ftl"));
         }
-
-        Map<String, Object> attributeMap = new HashMap<>();
-
-        attributeMap.put("partsInfo", partsInfo);
-
-        return templateEngine.render(new ModelAndView(attributeMap , "inventory/new_part.ftl"));
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
+        }
     }
 
 }

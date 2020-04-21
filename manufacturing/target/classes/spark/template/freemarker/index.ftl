@@ -10,7 +10,7 @@
 	<a href="/" style="color:white">
 		<h1>KennUware</h1>
 	</a>
-	<p style="font-size:25px">Welcome, ${userName}</p>
+	<p style="font-size:25px">Welcome, ${firstName}</p>
 </div>
 <div class="navbar">
 	<a href="/">
@@ -31,6 +31,13 @@
     <br>
     <br>
     <br>
+    <div>
+        <h1>Employee Profile</h1>
+        <p>Name: ${lastName}, ${firstName}</p>
+		<p>ID#:  ${employeeId}</p>
+		<p>Role: ${roleName}</p>
+		<p>Manager ID: ${managerId}</p>
+	</div>
     <div>
         <a href="/signOut">
         <button class="navButton"  > Sign out </button>
