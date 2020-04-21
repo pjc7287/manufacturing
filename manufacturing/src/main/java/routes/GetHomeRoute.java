@@ -17,9 +17,16 @@ public class GetHomeRoute implements Route {
     }
 
     public Object handle(Request request, Response response){
-        if(request.session().attribute("signedIn")=="true"){
+        Session userSession = request.session();
+        if(userSession.attribute("signedIn")=="true"){
             Map<String, Object> attributeMap = new HashMap<>();
-            attributeMap.put("userName","Manager");
+            attributeMap.put("departmentName", userSession.attribute("departmentName"));
+            attributeMap.put("firstName",userSession.attribute("firstName"));
+            attributeMap.put("lastName",userSession.attribute("lastName"));
+            attributeMap.put("employeeId",userSession.attribute("employeeId"));
+            attributeMap.put("managerId",userSession.attribute("managerId"));
+            attributeMap.put("roleName",userSession.attribute("roleName"));
+
             return templateEngine.render(new ModelAndView(attributeMap , "index.ftl"));
         }
         else{

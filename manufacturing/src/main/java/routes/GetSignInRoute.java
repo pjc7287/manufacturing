@@ -53,6 +53,12 @@ public class GetSignInRoute implements Route {
         else{
             userSession.attribute("permissions","worker");
         }
+        userSession.attribute("departmentName",employeeInfo.getDepartmentName());
+        userSession.attribute("firstName",employeeInfo.getEmployeeFirstName());
+        userSession.attribute("lastName",employeeInfo.getEmployeeLastName());
+        userSession.attribute("employeeId",employeeInfo.getEmployeeId());
+        userSession.attribute("managerId",employeeInfo.getManagerId());
+        userSession.attribute("roleName",employeeInfo.getRoleName());
         userSession.attribute("signedIn", "true");
         response.redirect("/");
         return null;
