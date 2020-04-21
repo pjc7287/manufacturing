@@ -17,10 +17,15 @@ public class GetHomeRoute implements Route {
     }
 
     public Object handle(Request request, Response response){
+        if(request.session().attribute("signedIn")=="true"){
+            Map<String, Object> attributeMap = new HashMap<>();
+            attributeMap.put("userName","Manager");
+            return templateEngine.render(new ModelAndView(attributeMap , "index.ftl"));
+        }
+        else{
+            return templateEngine.render(new ModelAndView(new HashMap<String,Object>() , "signin.ftl"));
+        }
 
-        Map<String, Object> attributeMap = new HashMap<>();
-        attributeMap.put("userName","Manager");
-        return templateEngine.render(new ModelAndView(attributeMap , "index.ftl"));
     }
 
 }

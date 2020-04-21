@@ -28,6 +28,14 @@
 </div>
 
 <section style="display:flex; flex-direction:row">
+    <br>
+    <br>
+    <br>
+    <div>
+        <a href="/signOut">
+        <button class="navButton"  > Sign out </button>
+        </a>
+    </div>
 </section>
 
 </body>

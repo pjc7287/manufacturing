@@ -136,6 +136,10 @@ public class WebServer {
         //HEARTBEAT ROUTE
         post("/heartbeat", new PostHeartbeatRoute(assemblyLine));
         get("/heartbeat", (Request r, Response re) ->  "heartbeat found");
+
+        //SIGNIN SIGNOUT ROUTES
+        get("/signIn/acceptuser", new GetSignInRoute(gson,httpClient));
+        get("/signOut", new GetSignOutRoute());
     }
 }
 
